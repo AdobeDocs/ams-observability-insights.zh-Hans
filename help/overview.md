@@ -3,7 +3,7 @@ title: 使用 [!DNL Synoptryx]监控您的AEM Managed Services环境
 description: 在Adobe [!DNL Experience Manager] Managed Services上 [!DNL Synoptryx] 监控概述 — Adobe监控的内容、您的帐户设置方式以及您的团队获取访问权限的方式。
 feature: Operations
 role: Admin
-source-git-commit: 12876ba185fd6d155f02639fba9601a3616c7e90
+source-git-commit: e8de2213d91e09da68a8f7014b075f81bd7f07ef
 workflow-type: tm+mt
 source-wordcount: '618'
 ht-degree: 0%
@@ -66,3 +66,4 @@ Adobe使用[!DNL Synoptryx] APM Java插件监视AEM **创作**&#x200B;和&#x200B
 
 - [应用程序性能监控(APM)](application-performance-monitoring.md) — 跟踪AEM事务、分析JVM行为和检查外部服务。
 - [基础架构监控](infrastructure-monitoring.md) — 审查主机级系统、网络、进程和存储指标。
+
