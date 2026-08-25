@@ -6,7 +6,7 @@ product_v2:
 usetq: true
 type: Documentation
 mini-toc-levels: 2
-git-repo: https://github.com/Adobe-Enterprise-Docs/ams-observability-insights.en
+git-repo: https://github.com/Adobe-Enterprise-Docs/ams-observability-insights.zh-Hans
 recommendations: noDisplay
 index: true
 source-git-commit: 16e6e5702089d6ebd67d923686255a1b9d25afe8
