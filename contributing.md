@@ -1,13 +1,13 @@
 ---
-source-git-commit: 43317991c712a8ee9fe721f2635f5ebd5dd0274e
+source-git-commit: e94c1ec35b136696b886ad386a99171879f8a36e
 workflow-type: tm+mt
-source-wordcount: '495'
+source-wordcount: '487'
 ht-degree: 1%
 
 ---
-# 为Adobe Experience Manager Cloud Service文档贡献内容
+# 向文档投稿
 
-感谢您选择向Adobe Experience Manager Cloud Service文档投稿！ 文档团队欢迎整个读者社区以及Adobe员工贡献内容。
+感谢您选择向我们的文档投稿！ 文档团队欢迎整个读者社区以及Adobe员工贡献内容。
 
 本文件介绍了如何贡献内容，并指出了在贡献内容时应遵循的准则。
 

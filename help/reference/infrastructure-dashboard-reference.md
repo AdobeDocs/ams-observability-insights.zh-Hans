@@ -1,19 +1,19 @@
 ---
-title: 使用 [!DNL Synoptryx]监视基础结构
-description: 使用 [!DNL Synoptryx] 基础架构监视功能查看AEM Managed Services整个范围内的主机级系统、网络、进程和存储指标。
+title: 基础架构仪表板引用
+description: 可观察性分析基础架构功能板的逐面板参考，包括屏幕截图、量度和单位。
 feature: Operations
 role: Admin
-source-git-commit: 12876ba185fd6d155f02639fba9601a3616c7e90
+source-git-commit: 1d54a6a398360b040221db5b2780d301722894bf
 workflow-type: tm+mt
-source-wordcount: '1107'
+source-wordcount: '1091'
 ht-degree: 7%
 
 ---
 
 
-# 主机基础架构监控仪表板
+# 基础架构仪表板引用 {#infrastructure-dashboard-reference}
 
-本节介绍基础架构监视仪表板中显示的每个主机级基础架构监视图。 每个部分都说明了量度的用途、收集的数据、度量单位以及可视化图表中显示的信息。
+此参考记录了AEM Managed Services的可观察性分析中使用的主机级基础架构面板。
 
 ## 功能板概述
 
@@ -32,11 +32,11 @@ ht-degree: 7%
 
 ## &#x200B;1. 主机CPU利用率
 
-![主机CPU利用率](assets/host-monitoring/host_cpu_utilization.png)
+![主机CPU利用率](../assets/host-monitoring/host_cpu_utilization.png)
 
 ### 描述
 
-**[!UICONTROL 主机CPU利用率]**&#x200B;面板显示一段时间内操作系统和所有正在运行的进程当前正在使用的CPU资源的百分比。
+**主机CPU利用率**&#x200B;面板显示一段时间内操作系统和所有正在运行的进程当前正在使用的CPU资源的百分比。
 
 此量度表示整个主机上的CPU使用情况，并提供了处理器活动的时间序列可视化图表。
 
@@ -71,11 +71,11 @@ ht-degree: 7%
 
 ## &#x200B;2. 主机磁盘I/O
 
-![主机磁盘I/O](assets/host-monitoring/host_disk_io.png)
+![主机磁盘I/O](../assets/host-monitoring/host_disk_io.png)
 
 ### 描述
 
-**[!UICONTROL 主机磁盘I/O]**&#x200B;面板显示主机执行的磁盘读取和磁盘写入操作的存储吞吐量。
+**主机磁盘I/O**&#x200B;面板显示主机执行的磁盘读取和磁盘写入操作的存储吞吐量。
 
 该图显示了两个独立的时间序列，它们表示在操作系统和存储设备之间传输的数据。
 
@@ -109,11 +109,11 @@ ht-degree: 7%
 
 ## &#x200B;3. 主机网络I/O
 
-![主机网络I/O](assets/host-monitoring/host_network_io.png)
+![主机网络I/O](../assets/host-monitoring/host_network_io.png)
 
 ### 描述
 
-**[!UICONTROL 主机网络I/O]**&#x200B;面板显示主机在一段时间内传输和接收的网络通信量。
+**主机网络I/O**&#x200B;面板显示主机在一段时间内传输和接收的网络通信量。
 
 该图表测量数据通过网络接口传输的速率，并提供网络带宽消耗的可视性。
 此度量表示聚合网络吞吐量。
@@ -152,11 +152,11 @@ ht-degree: 7%
 
 ## &#x200B;4. CPU I/O等待
 
-![CPU I/O等待](assets/host-monitoring/cpu_io_wait.png)
+![CPU I/O等待](../assets/host-monitoring/cpu_io_wait.png)
 
 ### 描述
 
-**[!UICONTROL CPU I/O等待]**&#x200B;面板显示CPU等待输入/输出操作完成所花费的时间百分比。
+**CPU I/O等待**&#x200B;面板显示CPU等待输入/输出操作完成所花费的时间百分比。
 
 此度量表示由于等待存储设备或其他I/O操作时活动进程被阻止而发生的处理器空闲时间。
 
@@ -189,11 +189,11 @@ ht-degree: 7%
 
 ## &#x200B;5. 存储使用情况
 
-![存储使用情况](assets/host-monitoring/storage_disk_usage.png)
+![存储使用情况](../assets/host-monitoring/storage_disk_usage.png)
 
 ### 描述
 
-“**[!UICONTROL 存储使用情况]**”面板显示当前在受监视主机上使用的存储容量的总百分比。
+“**存储使用情况**”面板显示当前在受监视主机上使用的存储容量的总百分比。
 
 该图形提供了所选时间间隔内文件系统容量利用率的历史视图。
 
@@ -215,11 +215,11 @@ ht-degree: 7%
 
 ## &#x200B;6. 磁盘使用情况
 
-![磁盘使用情况](assets/host-monitoring/storage_disk_usage.png)
+![磁盘使用情况](../assets/host-monitoring/storage_disk_usage.png)
 
 ### 描述
 
-“**[!UICONTROL 磁盘使用情况]**”面板显示每个已装载的文件系统或存储设备的存储使用情况。
+“**磁盘使用情况**”面板显示每个已装载的文件系统或存储设备的存储使用情况。
 
 每一行对应于一个特定的块设备或已装载的分区，并报告当前使用的空间百分比。
 
@@ -248,11 +248,11 @@ ht-degree: 7%
 
 ## &#x200B;7. 主机CPU平均负载
 
-![托管CPU平均负载](assets/host-monitoring/host_cpu_load_average.png)
+![托管CPU平均负载](../assets/host-monitoring/host_cpu_load_average.png)
 
 ### 描述
 
-**[!UICONTROL 主机CPU平均负载]**&#x200B;面板显示三个滚动时间窗口的Linux系统平均负载。
+**主机CPU平均负载**&#x200B;面板显示三个滚动时间窗口的Linux系统平均负载。
 
 与CPU利用率不同，平均负载表示处于活动运行状态或等待CPU计划或I/O完成的进程的平均数。
 
@@ -289,11 +289,11 @@ ht-degree: 7%
 
 ## &#x200B;8. 主机内存使用率
 
-![主机内存使用率](assets/host-monitoring/host_memory_usage.png)
+![主机内存使用率](../assets/host-monitoring/host_memory_usage.png)
 
 ### 描述
 
-“**[!UICONTROL 主机内存使用情况]**”面板显示操作系统当前分配的物理系统内存的百分比。
+“**主机内存使用情况**”面板显示操作系统当前分配的物理系统内存的百分比。
 
 此度量表示所有正在运行的进程、内核内存、缓冲区和高速缓存的总RAM利用率。
 
@@ -324,7 +324,7 @@ ht-degree: 7%
 - 历史利用率趋势。
 - 概要统计信息。
 
-## 功能板量度摘要
+## 仪表板量度摘要
 
 | 功能板面板 | 主要指标 | 单位 |
 | --------------------- | -------------------------------- | ------------ |

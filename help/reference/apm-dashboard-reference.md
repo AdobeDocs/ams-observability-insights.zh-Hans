@@ -1,76 +1,33 @@
 ---
-title: 使用 [!DNL Synoptryx]进行应用程序性能监控(APM)
-description: 使用 [!DNL Synoptryx] APM插件跟踪AEM事务、监视JVM、分析事务以及检查AEM Managed Services上的事务跟踪和外部服务。
+title: APM仪表板引用
+description: 可观察性见解APM功能板的逐面板参考，包括屏幕截图、量度和单位。
 feature: Operations
 role: Admin
-source-git-commit: 12876ba185fd6d155f02639fba9601a3616c7e90
+source-git-commit: 1d54a6a398360b040221db5b2780d301722894bf
 workflow-type: tm+mt
-source-wordcount: '1078'
-ht-degree: 5%
+source-wordcount: '806'
+ht-degree: 7%
 
 ---
 
 
-# 使用[!DNL Synoptryx]的应用程序性能监控(APM) {#application-performance-monitoring}
+# APM仪表板引用 {#apm-dashboard-reference}
 
-[!DNL Synoptryx]应用程序性能监控(APM)提供实时和历史insight到Adobe [!DNL Experience Manager] (AEM)性能和最终用户体验的转换。 通过端到端事务跟踪、图表和报告，可以深入了解Java代码级别的应用程序行为。
-
-## Managed Services [!DNL Synoptryx] APM插件 {#apm-plugin}
-
-AEM作为Java应用程序在Jetty上运行，带有Apache Felix OSGi模块，基于Apache Sling和Jackrabbit Oak构建。 Adobe Managed Services、AEM工程和[!DNL Synoptryx]工程部门联合开发了Managed Services环境的自定义工具。
-
-该工具收集：
-
-- **有意义的事务命名** — Sling扩展将事务名称与页面结构保持一致，并在Insights事件中添加`requestURL`属性，以便您可以跨功能板关联Sling URL。
-
-![Synoptryx APM跟踪视图，显示具有Sling运行状况检查路由和跨时间线的描述性AEM事务名称](assets/image19a.png)
-
-- **JCR检测** — 存储库级别的操作（包括XPath和JCR-SQL2）在APM的数据库部分中分类并附加到事务跟踪。
-
-![Synoptryx APM跟踪视图，显示页面请求的嵌套AEM组件跨度和执行时间线](assets/image19.png)
-
-## 使用[!DNL Synoptryx] APM {#using-apm}
-
-使用APM在应用程序问题影响最终用户之前查找它们。 创作和发布共享一个代码库，但作为&#x200B;**单独的APM应用程序**&#x200B;进行监视，因此您可以单独分析每个层。
-
-每个Managed Services环境都包括：
-
-- 一个APM应用程序供作者使用
-- 一个APM应用程序用于发布
-
-在[!DNL Synoptryx] APM中选择应用程序名称以打开其概述和监视仪表板。
-
-![Synoptryx APM应用程序列表显示作者和发布应用程序](assets/image1a.png)
-
-## 仪表板节
-
-“应用程序性能管理”仪表板包含以下部分：
-
-- 概述
-- 红色量度（比率·错误·持续时间）
-- 流量
-- 延迟和性能
-- 错误详细信息
-- 热门事务
-- JVM运行状况
-- JVM 内存
-- 垃圾回收
-
-本指南中仅记录以下章节。
+本参考记录了AEM Managed Services中使用的主要可观察性见解APM面板。
 
 ## 仪表板导航
 
-![仪表板导航](assets/apm/1_opening_screen.png)
+![仪表板导航](../assets/apm/1_opening_screen.png)
 
 仪表板分为多个可扩展部分，这些部分将相关的应用程序性能量度分组。 展开某个部分将显示与该类别关联的一个或多个图表。
 
 ## 概述
 
-![概述](assets/apm/1.1_apm_overview.png)
+![概述](../assets/apm/1.1_apm_overview.png)
 
 ### 描述
 
-**[!UICONTROL 概述]**&#x200B;部分显示汇总受监视应用程序的当前状态的高级关键绩效指标(KPI)。
+**概述**&#x200B;部分显示汇总受监视应用程序的当前状态的高级关键绩效指标(KPI)。
 
 这些KPI提供了应用程序活动、吞吐量、请求成功和整体用户体验的概览摘要。
 
@@ -144,7 +101,7 @@ RED方法测量应用程序的三个主要特征：
 
 ### 请求率
 
-![请求速率](assets/apm/2_red_metrics_request_rate.png)
+![请求速率](../assets/apm/2_red_metrics_request_rate.png)
 
 #### 描述
 
@@ -171,7 +128,7 @@ req_min
 
 ### 错误率
 
-![错误率](assets/apm/3_error_rate.png)
+![错误率](../assets/apm/3_error_rate.png)
 
 #### 描述
 
@@ -199,7 +156,7 @@ error_pct (1h ago)
 
 ### 请求持续时间
 
-![请求持续时间](assets/apm/4_request_duration_p50_p95.png)
+![请求持续时间](../assets/apm/4_request_duration_p50_p95.png)
 
 #### 描述
 
@@ -242,7 +199,7 @@ P90
 
 ### 按HTTP状态代码显示的请求
 
-![按状态代码请求](assets/apm/5_requests_by_status_code.png)
+![按状态代码请求](../assets/apm/5_requests_by_status_code.png)
 
 #### 描述
 
@@ -277,7 +234,7 @@ req_s 500
 
 ### 按终结点显示的请求速率
 
-终结点![请求速率](assets/apm/6_request_rate_by_end_point.png)
+终结点![请求速率](../assets/apm/6_request_rate_by_end_point.png)
 
 #### 描述
 
@@ -306,7 +263,7 @@ endpoint_request_rate
 
 ### 响应时间 — P95与1小时
 
-![响应时间P95](assets/apm/7_response_time_p95_1h.png)
+![响应时间P95](../assets/apm/7_response_time_p95_1h.png)
 
 #### 描述
 
@@ -334,7 +291,7 @@ P95 (1 Hour Ago)
 
 ### 随时间变化的APDEX分数
 
-![APDEX](assets/apm/8_apdex_score_overtime.png)
+![APDEX](../assets/apm/8_apdex_score_overtime.png)
 
 #### 描述
 
@@ -360,7 +317,7 @@ APDEX Score
 
 ### 吞吐量与P95延迟
 
-![吞吐量和延迟](assets/apm/9_throughput_vs_p95latency.png)
+![吞吐量和延迟](../assets/apm/9_throughput_vs_p95latency.png)
 
 #### 描述
 
@@ -392,7 +349,7 @@ P95 Latency
 
 ### 错误率%（按状态组）
 
-![按状态组的错误率](assets/apm/10_error_rate_pct_by_status_group.png)
+![按状态组的错误率](../assets/apm/10_error_rate_pct_by_status_group.png)
 
 #### 描述
 
@@ -424,10 +381,9 @@ Combined Error Trend
 - 平均错误百分比
 - 时间序列趋势
 
-
 ### 错误率趋势 — 现在与1小时前
 
-![错误率1小时](assets/apm/11_error_ratio_trend_1h.png)
+![错误率1小时](../assets/apm/11_error_ratio_trend_1h.png)
 
 #### 描述
 
@@ -452,7 +408,7 @@ Current Error Ratio
 
 ### 错误率趋势 — 现在与6小时前
 
-![错误率6小时](assets/apm/12_error_ratio_trend_6h.png)
+![错误率6小时](../assets/apm/12_error_ratio_trend_6h.png)
 
 #### 描述
 
@@ -475,7 +431,7 @@ Current Error Ratio
 - 历史比较
 - 时间序列可视化图表
 
-## 功能板量度摘要
+## 仪表板量度摘要
 
 | 仪表板 | 主要指标 |
 | -------------------------- | --------------------------------------------- |

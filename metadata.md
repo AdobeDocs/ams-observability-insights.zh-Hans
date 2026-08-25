@@ -6,13 +6,12 @@ product_v2:
 usetq: true
 type: Documentation
 mini-toc-levels: 2
-git-repo: https://github.com/AdobeDocs/ams-synoptryx.zh-Hans
+git-repo: https://github.com/Adobe-Enterprise-Docs/ams-observability-insights.zh-Hans
 recommendations: noDisplay
-index: false
-hide: true
-source-git-commit: 528f78bf45e46085edebbb9f873cfaa8b990df24
+index: true
+source-git-commit: 16e6e5702089d6ebd67d923686255a1b9d25afe8
 workflow-type: tm+mt
-source-wordcount: 13
+source-wordcount: 16
 ht-degree: 0%
 
 ---

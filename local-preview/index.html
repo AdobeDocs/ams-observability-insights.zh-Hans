@@ -1,0 +1,412 @@
+<\!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Synoptryx Documentation &mdash; AEM Managed Services</title>
+  <style>
+    :root {
+      --bg: #f8f8f8;
+      --surface: #ffffff;
+      --text: #2c2c2c;
+      --text-secondary: #555555;
+      --muted: #767676;
+      --accent: #1473e6;
+      --accent-hover: #0d66d0;
+      --border: #e1e1e1;
+      --sidebar-bg: #f5f5f5;
+      --sidebar-active: #e8f0fc;
+      --sidebar-active-border: #1473e6;
+      --header-bg: #2c2c2c;
+      --tag-bg: #e8f0fc;
+      --tag-text: #004796;
+      --code-bg: #f3f3f3;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--accent-hover); }
+
+    /* Site header */
+    .site-header {
+      background: var(--header-bg);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-header .logo { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+    .site-header .logo span { color: #fa0f00; }
+    .site-header .header-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.25); }
+    .site-header .product-name { font-size: 13px; color: rgba(255,255,255,0.85); }
+    .site-header .header-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+    .site-header .header-right a { font-size: 12px; color: rgba(255,255,255,0.75); }
+    .site-header .header-right a:hover { color: #fff; text-decoration: none; }
+
+    /* Preview ribbon */
+    .preview-ribbon { background: #fff3cd; border-bottom: 1px solid #ffc107; padding: 7px 20px; font-size: 12px; color: #664d03; }
+    .preview-ribbon strong { color: #523d02; }
+
+    /* Breadcrumbs */
+    .breadcrumb-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 20px; height: 36px; display: flex; align-items: center; }
+    .breadcrumbs { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); list-style: none; }
+    .breadcrumbs li + li::before { content: "\203A"; color: #c7c7c7; margin-right: 6px; }
+    .breadcrumbs a { color: var(--muted); }
+    .breadcrumbs a:hover { color: var(--accent); text-decoration: underline; }
+
+    /* Page shell */
+    .page-shell { display: flex; min-height: calc(100vh - 120px); }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      padding: 16px 0;
+      position: sticky;
+      top: 120px;
+      height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+    .sidebar-section-label { padding: 4px 20px 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .sidebar nav ul { list-style: none; }
+    .sidebar nav a { display: block; padding: 6px 20px; font-size: 13px; color: var(--text-secondary); border-left: 3px solid transparent; }
+    .sidebar nav a:hover { background: rgba(0,0,0,0.04); color: var(--text); text-decoration: none; }
+    .sidebar nav a.active { background: var(--sidebar-active); color: var(--accent); border-left-color: var(--sidebar-active-border); font-weight: 600; }
+    .sidebar nav .sub-nav a { padding-left: 36px; font-size: 12.5px; }
+    .sidebar-group-label { padding: 14px 20px 4px; font-size: 11px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* Main content */
+    .main-content { flex: 1; min-width: 0; padding: 32px 48px 64px; }
+
+    /* Hero area */
+    .doc-hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 32px;
+    }
+    .doc-hero .eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 10px; }
+    .doc-hero h1 { font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.25; }
+    .doc-hero p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px; }
+    .doc-hero p:last-child { margin-bottom: 0; }
+
+    /* Stats row */
+    .stats-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+    .stat-item { background: var(--sidebar-bg); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; text-align: center; }
+    .stat-item strong { display: block; font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+    .stat-item span { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+
+    /* Section label */
+    .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+    /* Two column layout */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+
+    /* Content panels */
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 24px 26px; }
+    .panel h2 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .panel p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px; }
+    .panel p:last-child { margin-bottom: 0; }
+    .panel ul { padding-left: 18px; color: var(--text-secondary); }
+    .panel ul li { font-size: 13px; line-height: 1.7; margin-bottom: 4px; }
+
+    /* Structure tree */
+    .tree-list { list-style: none; padding: 0; }
+    .tree-list > li { padding: 4px 0; font-size: 13px; color: var(--text); font-weight: 600; }
+    .tree-list .sub-items { list-style: none; padding-left: 16px; margin-top: 3px; }
+    .tree-list .sub-items li { font-size: 12.5px; color: var(--text-secondary); font-weight: 400; padding: 2px 0; }
+    .tree-list .sub-items li::before { content: "\2014\00a0"; color: var(--border); }
+
+    /* Page inventory grid */
+    .inventory-section { margin-bottom: 32px; }
+    .inventory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .page-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 18px 20px; transition: border-color 0.15s, box-shadow 0.15s; }
+    .page-card:hover { border-color: var(--accent); box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .tag { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 3px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: var(--tag-bg); color: var(--tag-text); border: 1px solid #b3c8f5; }
+    .tag.green { background: #e8f9ed; color: #107154; border-color: #9ed9bc; }
+    .tag.orange { background: #fff3e0; color: #7d4300; border-color: #ffc97a; }
+    .tag.gray { background: #f0f0f0; color: #555; border-color: #d0d0d0; }
+    .page-card h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .page-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 10px; }
+    .page-card .file-path { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 11px; background: var(--code-bg); border: 1px solid var(--border); border-radius: 3px; padding: 2px 6px; color: var(--text-secondary); }
+
+    /* Checklist panel */
+    .checklist-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 24px 26px; }
+    .checklist-panel h2 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .checklist-panel ul { padding-left: 0; list-style: none; }
+    .checklist-panel ul li { font-size: 13px; color: var(--text-secondary); padding: 7px 0 7px 24px; position: relative; border-bottom: 1px solid var(--border); line-height: 1.5; }
+    .checklist-panel ul li:last-child { border-bottom: none; }
+    .checklist-panel ul li::before { content: "\2713"; position: absolute; left: 0; color: #2d9d78; font-weight: 700; }
+    .footer-note { margin-top: 16px; padding: 12px 16px; background: var(--sidebar-bg); border: 1px solid var(--border); border-radius: 4px; font-size: 12px; color: var(--muted); }
+    .footer-note code { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 11px; background: var(--code-bg); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; }
+
+    /* Site footer */
+    .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 16px 20px; font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+
+    /* Responsive */
+    @media (max-width: 960px) { .inventory-grid { grid-template-columns: repeat(2, 1fr); } .two-col { grid-template-columns: 1fr; } .stats-row { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px 16px 48px; } .inventory-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <span class="logo"><span>Adobe</span> Experience League</span>
+    <div class="header-divider"></div>
+    <span class="product-name">AEM Managed Services &middot; Synoptryx</span>
+    <div class="header-right">
+      <a href="overview.html">Overview</a>
+      <a href="#">Sign in</a>
+    </div>
+  </header>
+
+  <div class="preview-ribbon">
+    <strong>Local preview</strong> &mdash; Documentation information architecture review. Not a published page.
+  </div>
+
+  <nav class="breadcrumb-bar" aria-label="breadcrumb">
+    <ol class="breadcrumbs">
+      <li><a href="#">AEM Managed Services</a></li>
+      <li>Synoptryx</li>
+    </ol>
+  </nav>
+
+  <div class="page-shell">
+
+    <aside class="sidebar" aria-label="Documentation navigation">
+      <div class="sidebar-section-label">Synoptryx</div>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Documentation home</a></li>
+          <li><a href="overview.html">Overview</a></li>
+          <li class="sidebar-group-label">Get started</li>
+          <li><a href="#">Get started with Synoptryx</a></li>
+          <ul class="sub-nav">
+            <li><a href="#">Access and account management</a></li>
+            <li><a href="#">Coverage, environments, and data retention</a></li>
+          </ul>
+          <li class="sidebar-group-label">Use Synoptryx</li>
+          <li><a href="#">Application Performance Monitoring</a></li>
+          <ul class="sub-nav">
+            <li><a href="#">Investigate application issues</a></li>
+          </ul>
+          <li><a href="#">Infrastructure monitoring</a></li>
+          <ul class="sub-nav">
+            <li><a href="#">Investigate infrastructure issues</a></li>
+          </ul>
+          <li class="sidebar-group-label">Reference</li>
+          <li><a href="#">APM dashboard reference</a></li>
+          <li><a href="#">Infrastructure dashboard reference</a></li>
+          <li><a href="#">Metrics, coverage, and retention</a></li>
+          <li class="sidebar-group-label">Troubleshooting</li>
+          <li><a href="#">Troubleshooting and FAQ</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+
+      <\!-- Hero -->
+      <div class="doc-hero">
+        <p class="eyebrow">Local Documentation Review &middot; AEM Managed Services</p>
+        <h1>Synoptryx documentation structure preview</h1>
+        <p>This page is a local visualization of the current documentation information architecture in this worktree. Use it to validate the structure, navigation depth, and page responsibilities before making further content changes.</p>
+        <p>The documentation is organized into landing, onboarding, task workflows, deep reference, and troubleshooting sections instead of a flat hierarchy.</p>
+        <div class="stats-row">
+          <div class="stat-item"><strong>10</strong><span>documentation pages in the current IA</span></div>
+          <div class="stat-item"><strong>4</strong><span>primary reader paths</span></div>
+          <div class="stat-item"><strong>2</strong><span>feature hubs: APM and infrastructure</span></div>
+          <div class="stat-item"><strong>2</strong><span>detailed dashboard reference sections</span></div>
+        </div>
+      </div>
+
+      <\!-- Structure + What changed -->
+      <div class="two-col">
+        <div class="panel">
+          <h2>Structure map</h2>
+          <ul class="tree-list">
+            <li>Overview
+              <ul class="sub-items">
+                <li>Product landing and route selection</li>
+              </ul>
+            </li>
+            <li>Get started with Synoptryx
+              <ul class="sub-items">
+                <li>Access and account management</li>
+                <li>Coverage, environments, and data retention</li>
+              </ul>
+            </li>
+            <li>Use Synoptryx
+              <ul class="sub-items">
+                <li>Application Performance Monitoring</li>
+                <li>Investigate application issues</li>
+                <li>Investigate infrastructure issues</li>
+                <li>Infrastructure monitoring</li>
+              </ul>
+            </li>
+            <li>Reference
+              <ul class="sub-items">
+                <li>APM dashboard reference</li>
+                <li>Infrastructure dashboard reference</li>
+                <li>Metrics, coverage, and retention</li>
+              </ul>
+            </li>
+            <li>Troubleshooting and FAQ</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h2>What changed structurally</h2>
+          <p>The old content shape was feature-heavy but shallow. It had one overview page and two large feature pages, with detailed dashboard notes mixed directly into the main reading path.</p>
+          <p>The current shape separates:</p>
+          <ul>
+            <li>Entry points for first-time readers</li>
+            <li>Task-oriented investigation workflows</li>
+            <li>Reference material for metric-by-metric interpretation</li>
+            <li>A troubleshooting home for future FAQ and support paths</li>
+          </ul>
+          <p>This is the right direction if the goal is a fuller product documentation experience rather than a short dashboard note set.</p>
+        </div>
+      </div>
+
+      <\!-- How to validate -->
+      <div class="panel" style="margin-bottom: 32px;">
+        <h2>How to validate this structure</h2>
+        <ul>
+          <li>Check whether the navigation groups match how your users think.</li>
+          <li>Confirm each page has a clear job and does not duplicate another page.</li>
+          <li>Look for gaps where the structure exists but the real product content still needs to be added.</li>
+          <li>Use this page for IA review, then open individual pages in VS Code Markdown Preview for wording review.</li>
+        </ul>
+      </div>
+
+      <\!-- Page inventory -->
+      <div class="inventory-section">
+        <p class="section-label">Page inventory</p>
+        <div class="inventory-grid">
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag">Landing</span><span class="tag green">Primary entry</span></div>
+            <h3>Overview</h3>
+            <p>Introduces Synoptryx, defines what it helps users do, summarizes monitoring coverage, and routes readers to the correct section.</p>
+            <span class="file-path">help/overview.md</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag gray">Navigation</span><span class="tag gray">IA source</span></div>
+            <h3>TOC</h3>
+            <p>Defines the visible documentation hierarchy for the guide and now reflects a deeper, task-oriented structure.</p>
+            <span class="file-path">help/TOC.md</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag">Onboarding</span><span class="tag green">Audience</span></div>
+            <h3>Get started with Synoptryx</h3>
+            <p>Orients new users, explains who the docs are for, and suggests reading paths based on intent.</p>
+            <span class="file-path">help/get-started/onboarding.md</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag">Onboarding</span><span class="tag orange">Access</span></div>
+            <h3>Access and account management</h3>
+            <p>Explains Adobe-managed ownership, IMS-based access, customer read-only usage, and the provision request path.</p>
+            <span class="file-path">help/get-started/access-and-accounts.md</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag">Onboarding</span><span class="tag gray">Scope</span></div>
+            <h3>Coverage, environments, and data retention</h3>
+            <p>Summarizes what is monitored, how Author and Publish are represented, and the 30-day retention window.</p>
+            <span class="file-path">help/get-started/coverage-and-data.md</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag green">Feature hub</span><span class="tag gray">Task routing</span></div>
+            <h3>Application Performance Monitoring</h3>
+            <p>Frames when to use APM, what questions it answers, and how to move from diagnosis into detailed reference.</p>
+            <span class="file-path">help/application-performance-monitoring.md</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag orange">Workflow</span><span class="tag orange">Incident response</span></div>
+            <h3>Investigate application issues</h3>
+            <p>Defines a triage flow for latency, throughput, error, and trace analysis with evidence capture guidance.</p>
+            <span class="file-path">help/use-cases/investigate-application-issues.md</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag orange">Workflow</span><span class="tag orange">Incident response</span></div>
+            <h3>Investigate infrastructure issues</h3>
+            <p>Defines a triage flow for CPU, memory, disk, network, and host comparison analysis.</p>
+            <span class="file-path">help/use-cases/investigate-infrastructure-issues.md</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag green">Feature hub</span><span class="tag gray">Host metrics</span></div>
+            <h3>Infrastructure monitoring</h3>
+            <p>Explains when host-level dashboards are useful, what to review first, and when to pivot into full reference material.</p>
+            <span class="file-path">help/infrastructure-monitoring.md</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag">Reference</span><span class="tag gray">Detailed metrics</span></div>
+            <h3>APM and infrastructure reference set</h3>
+            <p>Holds the deeper metric-by-metric dashboard documentation so the main flow pages stay readable.</p>
+            <span class="file-path">help/reference/</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag">Reference</span><span class="tag gray">Summary data</span></div>
+            <h3>Metrics, coverage, and retention</h3>
+            <p>Acts as a quick summary reference for data scope, environment representation, and retention boundaries.</p>
+            <span class="file-path">help/reference/metrics-and-retention.md</span>
+          </div>
+
+          <div class="page-card">
+            <div class="tag-row"><span class="tag gray">Troubleshooting</span><span class="tag gray">Scaffold</span></div>
+            <h3>Troubleshooting and FAQ</h3>
+            <p>Provides the future home for common questions, empty-state guidance, access issues, and support escalation patterns.</p>
+            <span class="file-path">help/troubleshooting/common-questions.md</span>
+          </div>
+
+        </div>
+      </div>
+
+      <\!-- Validation checklist -->
+      <div class="checklist-panel">
+        <h2>Suggested validation checklist</h2>
+        <ul>
+          <li>Does Overview feel like the right first page for a customer or operator?</li>
+          <li>Should APM and infrastructure be sibling feature hubs, or should there be a broader &ldquo;Monitor and investigate&rdquo; landing page first?</li>
+          <li>Do you want troubleshooting to remain a lightweight FAQ, or should it become a fuller runbook section?</li>
+          <li>Are there missing top-level product areas such as alerts, synthetic monitoring, dashboards, or operational best practices?</li>
+          <li>Do the current page boundaries match how Adobe support, CSEs, and customers actually navigate incidents?</li>
+        </ul>
+        <div class="footer-note">
+          Start from <code>help/overview.md</code> and <code>help/TOC.md</code> if you want to compare the structural intent with the actual navigation source. Open <a href="overview.html">overview.html</a> for the article-level preview.
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <span>Local preview &mdash; Documentation IA review for the <strong>docs-restructure-2026-07-29</strong> worktree.</span>
+    <span>Copyright &copy; 2026 Adobe. All Rights Reserved.</span>
+  </footer>
+
+</body>
+</html>

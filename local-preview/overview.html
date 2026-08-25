@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitor your AEM Managed Services environment with Synoptryx</title>
+  <style>
+    :root {
+      --bg: #f8f8f8;
+      --surface: #ffffff;
+      --text: #2c2c2c;
+      --text-secondary: #555555;
+      --muted: #767676;
+      --accent: #1473e6;
+      --accent-hover: #0d66d0;
+      --border: #e1e1e1;
+      --border-strong: #c7c7c7;
+      --sidebar-bg: #f5f5f5;
+      --sidebar-active: #e8f0fc;
+      --sidebar-active-border: #1473e6;
+      --header-bg: #2c2c2c;
+      --note-bg: #e8f0fc;
+      --note-border: #1473e6;
+      --tip-bg: #f0faf0;
+      --tip-border: #2d9d78;
+      --tag-bg: #e8f0fc;
+      --tag-text: #004796;
+      --code-bg: #f3f3f3;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--accent-hover); }
+
+    .site-header {
+      background: var(--header-bg);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-header .logo { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+    .site-header .logo span { color: #fa0f00; }
+    .site-header .header-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.25); }
+    .site-header .product-name { font-size: 13px; color: rgba(255,255,255,0.85); }
+    .site-header .header-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+    .site-header .header-right a { font-size: 12px; color: rgba(255,255,255,0.75); }
+    .site-header .header-right a:hover { color: #fff; text-decoration: none; }
+
+    .preview-ribbon {
+      background: #fff3cd;
+      border-bottom: 1px solid #ffc107;
+      padding: 7px 20px;
+      font-size: 12px;
+      color: #664d03;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .preview-ribbon strong { color: #523d02; }
+
+    .breadcrumb-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 20px; height: 36px; display: flex; align-items: center; }
+    .breadcrumbs { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); list-style: none; }
+    .breadcrumbs li + li::before { content: "\203A"; color: var(--border-strong); margin-right: 6px; }
+    .breadcrumbs a { color: var(--muted); }
+    .breadcrumbs a:hover { color: var(--accent); text-decoration: underline; }
+
+    .page-shell { display: flex; min-height: calc(100vh - 120px); }
+
+    .sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      padding: 16px 0;
+      position: sticky;
+      top: 120px;
+      height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+    .sidebar-section-label { padding: 4px 20px 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .sidebar nav ul { list-style: none; }
+    .sidebar nav a { display: block; padding: 6px 20px; font-size: 13px; color: var(--text-secondary); border-left: 3px solid transparent; }
+    .sidebar nav a:hover { background: rgba(0,0,0,0.04); color: var(--text); text-decoration: none; }
+    .sidebar nav a.active { background: var(--sidebar-active); color: var(--accent); border-left-color: var(--sidebar-active-border); font-weight: 600; }
+    .sidebar nav .sub-nav a { padding-left: 36px; font-size: 12.5px; }
+    .sidebar-group-label { padding: 14px 20px 4px; font-size: 11px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .main-content { flex: 1; min-width: 0; padding: 32px 48px 64px; max-width: 860px; }
+
+    .article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .applies-to { display: flex; align-items: center; gap: 6px; }
+    .applies-to .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+    .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 3px; font-size: 11px; font-weight: 600; background: var(--tag-bg); color: var(--tag-text); border: 1px solid #b3c8f5; }
+    .badge.green { background: #e8f9ed; color: #107154; border-color: #9ed9bc; }
+    .last-updated { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+    h1 { font-size: 28px; font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 16px; }
+    h2 { font-size: 20px; font-weight: 700; line-height: 1.25; color: var(--text); margin: 32px 0 12px; padding-top: 32px; border-top: 1px solid var(--border); }
+    h3 { font-size: 16px; font-weight: 700; line-height: 1.3; color: var(--text); margin: 24px 0 8px; }
+    p { font-size: 14px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 14px; }
+    p strong { color: var(--text); }
+    .lede { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; }
+    ul, ol { padding-left: 20px; margin-bottom: 14px; color: var(--text-secondary); }
+    li { font-size: 14px; line-height: 1.7; margin-bottom: 4px; }
+    li strong { color: var(--text); }
+
+    .callout { border-radius: 4px; padding: 14px 16px; margin: 20px 0; font-size: 13px; line-height: 1.65; border-left: 4px solid; }
+    .callout .callout-title { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
+    .callout p { font-size: 13px; margin-bottom: 0; color: inherit; }
+    .callout.note { background: var(--note-bg); border-color: var(--note-border); color: #003087; }
+    .callout.note .callout-title { color: #003087; }
+    .callout.tip { background: var(--tip-bg); border-color: var(--tip-border); color: #1a5c40; }
+    .callout.tip .callout-title { color: #1a5c40; }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 16px 0 24px; }
+    .doc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 18px 20px; transition: box-shadow 0.15s, border-color 0.15s; }
+    .doc-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .doc-card h3 { font-size: 14px; font-weight: 700; margin: 0 0 8px; color: var(--text); }
+    .doc-card p { font-size: 13px; margin: 0; color: var(--text-secondary); }
+
+    code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 12.5px; background: var(--code-bg); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; color: var(--text); }
+    .article-image { max-width: 100%; border: 1px solid var(--border); border-radius: 4px; display: block; margin: 16px 0; }
+
+    .on-this-page { width: 200px; flex-shrink: 0; padding: 24px 0; position: sticky; top: 120px; height: calc(100vh - 120px); overflow-y: auto; display: none; }
+    @media (min-width: 1400px) { .on-this-page { display: block; } .main-content { max-width: 800px; } }
+    .on-this-page .otp-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 0 16px 10px; }
+    .on-this-page ul { list-style: none; padding: 0; margin: 0; }
+    .on-this-page ul li a { display: block; padding: 5px 16px; font-size: 12px; color: var(--text-secondary); border-left: 2px solid transparent; }
+    .on-this-page ul li a:hover { color: var(--accent); text-decoration: none; }
+
+    .article-nav { display: flex; justify-content: space-between; gap: 16px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .article-nav a { display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; max-width: 45%; font-size: 13px; color: var(--accent); }
+    .article-nav a:hover { border-color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-decoration: none; }
+    .article-nav a .nav-direction { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .article-nav a.next { margin-left: auto; text-align: right; }
+
+    .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 16px 20px; font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .site-footer a { color: var(--muted); }
+
+    @media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px 16px 48px; } .cards-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1100px) { .main-content { padding: 28px 32px 56px; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <span class="logo"><span>Adobe</span> Experience League</span>
+    <div class="header-divider"></div>
+    <span class="product-name">AEM Managed Services &middot; Synoptryx</span>
+    <div class="header-right">
+      <a href="index.html">Documentation home</a>
+      <a href="#">Sign in</a>
+    </div>
+  </header>
+
+  <div class="preview-ribbon">
+    <strong>Local preview</strong> &mdash; Rendered from <code>help/overview.md</code>. Not a published page.
+  </div>
+
+  <nav class="breadcrumb-bar" aria-label="breadcrumb">
+    <ol class="breadcrumbs">
+      <li><a href="#">AEM Managed Services</a></li>
+      <li><a href="#">Synoptryx</a></li>
+      <li>Overview</li>
+    </ol>
+  </nav>
+
+  <div class="page-shell">
+
+    <aside class="sidebar" aria-label="Documentation navigation">
+      <div class="sidebar-section-label">Synoptryx</div>
+      <nav>
+        <ul>
+          <li><a href="overview.html" class="active">Overview</a></li>
+          <li class="sidebar-group-label">Get started</li>
+          <li><a href="#">Get started with Synoptryx</a></li>
+          <ul class="sub-nav">
+            <li><a href="#">Access and account management</a></li>
+            <li><a href="#">Coverage, environments, and data retention</a></li>
+          </ul>
+          <li class="sidebar-group-label">Use Synoptryx</li>
+          <li><a href="#">Application Performance Monitoring</a></li>
+          <ul class="sub-nav">
+            <li><a href="#">Investigate application issues</a></li>
+          </ul>
+          <li><a href="#">Infrastructure monitoring</a></li>
+          <ul class="sub-nav">
+            <li><a href="#">Investigate infrastructure issues</a></li>
+          </ul>
+          <li class="sidebar-group-label">Reference</li>
+          <li><a href="#">APM dashboard reference</a></li>
+          <li><a href="#">Infrastructure dashboard reference</a></li>
+          <li><a href="#">Metrics, coverage, and retention</a></li>
+          <li class="sidebar-group-label">Troubleshooting</li>
+          <li><a href="#">Troubleshooting and FAQ</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+
+      <div class="article-meta">
+        <div class="applies-to">
+          <span class="label">Applies to:</span>
+          <span class="badge">AEM Managed Services</span>
+        </div>
+        <div class="applies-to">
+          <span class="label">Topics:</span>
+          <span class="badge green">Operations</span>
+        </div>
+        <span class="last-updated">Last updated: July 2026</span>
+      </div>
+
+      <h1>Monitor your AEM Managed Services environment with Synoptryx</h1>
+      <p class="lede">Synoptryx provides visibility into application performance, infrastructure health, and service behavior in Adobe Experience Manager Managed Services, without requiring a separate monitoring platform.</p>
+      <p>If you are responsible for service reliability, incident response, or performance analysis, Synoptryx helps you move from symptoms to evidence quickly. It combines application telemetry and host-level health signals so customer teams and Adobe Managed Services can investigate issues from a shared operational view.</p>
+
+      <div class="callout note">
+        <div class="callout-title">Note</div>
+        <p>A Synoptryx Product Overview Whitepaper is available for the full AEM Managed Services observability and monitoring overview, ideal for sharing with stakeholders or reviewing offline.</p>
+      </div>
+
+      <h2>Why teams use Synoptryx</h2>
+      <p>Use Synoptryx to answer operational questions such as:</p>
+      <ul>
+        <li>Is the issue affecting Author, Publish, or both?</li>
+        <li>Is the problem caused by application behavior, host resource pressure, or a combination of both?</li>
+        <li>Which transactions, endpoints, or status groups explain the spike in errors or latency?</li>
+        <li>Is the issue isolated to one environment or visible across the broader topology?</li>
+      </ul>
+      <p>Synoptryx is designed for operational analysis of recent behavior. It helps you identify what changed, where it changed, and which signals are most relevant before escalation or corrective action.</p>
+
+      <h2>What Synoptryx helps you do</h2>
+      <ul>
+        <li>Understand how Author and Publish tiers behave under real traffic.</li>
+        <li>Correlate application latency, error rates, and JVM health with host-level signals.</li>
+        <li>Confirm whether an issue is isolated to one environment, one tier, or one host.</li>
+        <li>Give Adobe Managed Services and your internal teams a shared operational view during investigation.</li>
+      </ul>
+      <p>Synoptryx is included with AEM Managed Services. Adobe provisions and manages the account, instruments supported environments, and exposes the resulting dashboards as read-only operational tooling.</p>
+      <p>Because Adobe manages the platform setup and instrumentation, you can focus on investigation and interpretation rather than agent deployment, account administration, or dashboard assembly.</p>
+
+      <div class="callout tip">
+        <div class="callout-title">Tip</div>
+        <p>This guide is organized to help readers reach the right level of detail quickly. New users can start with onboarding, operators can go directly to task-oriented monitoring guides, and deep-dive investigations can use the dashboard reference for specific metrics and panels.</p>
+      </div>
+
+      <h2>Who this documentation is for</h2>
+      <ul>
+        <li>AEM Managed Services administrators who need visibility into monitored environments</li>
+        <li>Operations and support teams handling incidents, trend analysis, and service review</li>
+        <li>Customer engineering teams partnering with Adobe Managed Services during investigations</li>
+        <li>Stakeholders who need to understand monitoring scope and operational responsibilities</li>
+      </ul>
+
+      <h2>At a glance</h2>
+      <ul>
+        <li><strong>Dedicated Synoptryx account</strong> &mdash; Provisioned and overseen by Adobe Managed Services, with read-only access for your team.</li>
+        <li><strong>Deep AEM transaction monitoring</strong> &mdash; The Synoptryx APM agent traces meaningful transactions down to method calls, external dependencies, and repository operations.</li>
+        <li><strong>Unified application and infrastructure view</strong> &mdash; Combine APM and host-level metrics to optimize performance holistically.</li>
+      </ul>
+
+      <h2>What Adobe monitors with Synoptryx</h2>
+      <p>Adobe monitors AEM <strong>Author</strong> and <strong>Publish</strong> tiers with the Synoptryx APM Java plug-in. All hosted servers in your topology are monitored with the Synoptryx Infrastructure agent. Custom APM and Infrastructure monitoring is enabled in both non-production and production Managed Services environments.</p>
+      <img src="../help/assets/image6.png" alt="Diagram showing Synoptryx APM and Infrastructure monitoring across AEM Author, Publish, and hosted servers" class="article-image">
+      <h3>Applications in your account</h3>
+      <ul>
+        <li>One APM application for the <strong>Author</strong> tier per AEM Managed Services environment</li>
+        <li>One APM application for the <strong>Publish</strong> tier per AEM Managed Services environment</li>
+      </ul>
+      <p>Each application has its own license key. All topologies in your Managed Services contract report into one Synoptryx account. APM and Infrastructure metrics and events are retained for up to <strong>30 days</strong>.</p>
+
+      <h2>Core monitoring experiences</h2>
+      <div class="cards-grid">
+        <div class="doc-card">
+          <h3>Application Performance Monitoring</h3>
+          <p>Use APM when you need to understand request throughput, error rates, latency, JVM behavior, endpoint hotspots, and trace-level execution details for AEM applications.</p>
+        </div>
+        <div class="doc-card">
+          <h3>Infrastructure monitoring</h3>
+          <p>Use infrastructure dashboards when you need to determine whether the underlying hosts show CPU, memory, network, disk, or storage signals that explain the application behavior.</p>
+        </div>
+        <div class="doc-card">
+          <h3>Reference and troubleshooting</h3>
+          <p>Use the reference material when you need exact panel definitions, metric names, units, and screenshots. Use troubleshooting content for common entry points and support-oriented workflows.</p>
+        </div>
+        <div class="doc-card">
+          <h3>Issue routing</h3>
+          <p>Use the task-oriented investigation pages when you want a clearer path through triage instead of reading the full reference set.</p>
+        </div>
+      </div>
+
+      <h2>Choose your path</h2>
+      <ul>
+        <li><a href="#">Get started with Synoptryx</a> for first-time orientation</li>
+        <li><a href="#">Access and account management</a> if you need Adobe IMS access or want to understand user roles</li>
+        <li><a href="#">Application Performance Monitoring</a> to learn how to work with Author and Publish application dashboards</li>
+        <li><a href="#">Infrastructure monitoring</a> to interpret host-level health and capacity signals</li>
+        <li><a href="#">APM dashboard reference</a> and <a href="#">Infrastructure dashboard reference</a> for panel-level metric details</li>
+      </ul>
+
+      <h2>Recommended starting points</h2>
+      <h3>I am new to Synoptryx</h3>
+      <ol>
+        <li>Read <a href="#">Get started with Synoptryx</a>.</li>
+        <li>Review <a href="#">Access and account management</a>.</li>
+        <li>Review <a href="#">Coverage, environments, and data retention</a>.</li>
+      </ol>
+      <h3>I am investigating a current issue</h3>
+      <ol>
+        <li>Start with <a href="#">Application Performance Monitoring</a> if the symptom is application-facing.</li>
+        <li>Use <a href="#">Infrastructure monitoring</a> if you suspect host-level pressure or need to confirm capacity impact.</li>
+        <li>Use <a href="#">Investigate application issues</a> or <a href="#">Investigate infrastructure issues</a> for step-by-step investigation flows.</li>
+      </ol>
+      <h3>I need detailed metric interpretation</h3>
+      <p>Go directly to <a href="#">APM dashboard reference</a>, <a href="#">Infrastructure dashboard reference</a>, and <a href="#">Metrics, coverage, and retention</a>.</p>
+
+      <h2>Access and your account</h2>
+      <p>Monitoring data is consolidated in a Synoptryx account that Adobe provisions and manages. Customer users receive <strong>read-only access</strong> to APM and Infrastructure data collected by the agents. Adobe Managed Services retains account ownership and administrative control.</p>
+      <div class="callout note">
+        <div class="callout-title">Getting access</div>
+        <p>Access to Synoptryx requires Adobe IMS provisioning. Your Customer Success Engineer (CSE) can provision and manage user access for your organization. After provisioning, sign in at <a href="https://synoptryx.adobecqms.net">synoptryx.adobecqms.net</a>.</p>
+      </div>
+
+      <h2>How this guide is structured</h2>
+      <ul>
+        <li><strong>Overview and get started</strong> for orientation, access, and monitoring scope</li>
+        <li><strong>Use Synoptryx</strong> for product-area guidance and investigation workflows</li>
+        <li><strong>Reference</strong> for detailed panel-by-panel documentation</li>
+        <li><strong>Troubleshooting and FAQ</strong> for quick answers and future runbook expansion</li>
+      </ul>
+
+      <h2>What's next</h2>
+      <ul>
+        <li><a href="#">Get started with Synoptryx</a> &mdash; Understand audience, workflows, and how the documentation is organized.</li>
+        <li><a href="#">Application performance monitoring (APM)</a> &mdash; Trace AEM transactions, analyze JVM behavior, and inspect external services.</li>
+        <li><a href="#">Infrastructure monitoring</a> &mdash; Review host-level system, network, process, and storage metrics.</li>
+        <li><a href="#">Troubleshooting and FAQ</a> &mdash; Start from common questions and support-oriented paths when you are unsure where to begin.</li>
+      </ul>
+
+      <nav class="article-nav" aria-label="Article navigation">
+        <a href="index.html" class="prev">
+          <span class="nav-direction">&larr; Previous</span>
+          Documentation home
+        </a>
+        <a href="#" class="next">
+          <span class="nav-direction">Next &rarr;</span>
+          Get started with Synoptryx
+        </a>
+      </nav>
+
+    </main>
+
+    <aside class="on-this-page" aria-label="On this page">
+      <p class="otp-label">On this page</p>
+      <ul>
+        <li><a href="#">Why teams use Synoptryx</a></li>
+        <li><a href="#">What Synoptryx helps you do</a></li>
+        <li><a href="#">Who this documentation is for</a></li>
+        <li><a href="#">At a glance</a></li>
+        <li><a href="#">What Adobe monitors</a></li>
+        <li><a href="#">Core monitoring experiences</a></li>
+        <li><a href="#">Choose your path</a></li>
+        <li><a href="#">Recommended starting points</a></li>
+        <li><a href="#">Access and your account</a></li>
+        <li><a href="#">How this guide is structured</a></li>
+        <li><a href="#">What's next</a></li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <footer class="site-footer">
+    <span>Local preview &mdash; Source: <strong>help/overview.md</strong></span>
+    <span>Copyright &copy; 2026 Adobe. All Rights Reserved.</span>
+  </footer>
+
+</body>
+</html>
