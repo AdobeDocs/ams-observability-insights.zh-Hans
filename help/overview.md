@@ -3,9 +3,9 @@ title: 使用可观察性分析监控AEM Managed Services环境
 description: 从这里开始了解AEM Managed Services中的可观察性分析涵盖的内容、其代表对象以及如何导航本指南的其余部分。
 feature: Operations
 role: Admin
-source-git-commit: 440f182902d797a91b584fe1bac7f2b417f30ebe
+source-git-commit: 90ca53475d23dd9b3100236d899d3941f717edbd
 workflow-type: tm+mt
-source-wordcount: '733'
+source-wordcount: '744'
 ht-degree: 0%
 
 ---
@@ -16,6 +16,18 @@ ht-degree: 0%
 **可观察性分析**&#x200B;提供了在AEM Managed Services中查看应用程序性能、基础架构运行状况和服务行为的信息，无需单独的监视平台。
 
 如果您负责服务可靠性、事件响应或性能分析，**可观察性分析**&#x200B;可帮助您快速从症状变为证据。 它将应用程序遥测和主机级别的运行状况信号整合在一起，以便客户团队和Adobe可以从共享的操作视图中调查问题。
+
+## 可观察性分析白皮书
+
+<iframe
+  src="v2-assets/Observability_Insights_Overview.pdf"
+  title="可观察性分析白皮书"
+  width="100%"
+  height="800"
+  style="border: 0;"
+></iframe>
+
+[下载可观察性分析白皮书](v2-assets/Observability_Insights_Overview.pdf)
 
 ## 为什么团队使用可观察性洞察？ {#why-teams-use-observability-insights}
 
