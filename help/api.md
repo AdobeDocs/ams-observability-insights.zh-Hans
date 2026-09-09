@@ -15,7 +15,7 @@ ht-degree: 7%
 
 > 使用您的Observability Insights实例的API主机（例如`https://insights.adobecqms.net/`）替换本文档中的`{{API_BASE_URL}}`。
 
----
+&#x200B;---
 
 ## &#x200B;1. 获取API密钥
 
@@ -48,7 +48,7 @@ API密钥部分列出了您创建的每个密钥，包括其组织、创建日�
 - 定期轮换密钥并撤销任何不再使用的密钥。
 - 如果某个密钥被泄漏，请立即从&#x200B;**组织设置→API密钥**&#x200B;中撤销它，并生成替换。
 
----
+&#x200B;---
 
 ## &#x200B;2. 验证请求
 
@@ -60,7 +60,7 @@ Authorization: Bearer synx_9pQ2v6f1WYbLZk3n0aRtEo4jXcHsVmDgUiPq7B8l1yc
 
 没有有效密钥或密钥已过期/已撤消的请求将接收`401 Unauthorized`。 会话登录（浏览器Cookie/令牌）在此API中&#x200B;**未被接受**。
 
----
+&#x200B;---
 
 ## &#x200B;3. 基本概念
 
@@ -111,7 +111,7 @@ Retry-After: 60
 | `502 Bad Gateway` | 上游查询失败 — 可安全重试 |
 | `503 Service Unavailable` | 数据后端暂时不可用 |
 
----
+&#x200B;---
 
 ## &#x200B;4. 端点
 
@@ -347,7 +347,7 @@ curl -s "{{API_BASE_URL}}/public/v1/pages?tenant_id=<tenant_id>&limit=50" \
 }
 ```
 
----
+&#x200B;---
 
 ## &#x200B;5. 此API没有执行的操作
 
@@ -355,7 +355,7 @@ curl -s "{{API_BASE_URL}}/public/v1/pages?tenant_id=<tenant_id>&limit=50" \
 - **没有跨租户查询。** 每个请求的范围恰好为一个`tenant_id`。
 - **没有写入权限。** 公共API是只读的。
 
----
+&#x200B;---
 
 ## &#x200B;6. 支持
 
