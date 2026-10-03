@@ -17,7 +17,7 @@ ht-degree: 1%
 
 ## 参与者指南文档
 
-请参阅[参与者指南](https://experienceleague.adobe.com/docs/contributor/contributor-guide/introduction.html)。
+请参阅[参与者指南](https://experienceleague.adobe.com/docs/contributor/contributor-guide/introduction.html?lang=zh-Hans)。
 
 ## 如何投稿
 
@@ -58,4 +58,4 @@ ht-degree: 1%
 
 ## 更多信息
 
-有关如何使用GitHub创作平台的更多详细信息，请参阅[Adobe文档参与者指南](https://experienceleague.adobe.com/docs/contributor/contributor-guide/introduction.html)。
+有关如何使用GitHub创作平台的更多详细信息，请参阅[Adobe文档参与者指南](https://experienceleague.adobe.com/docs/contributor/contributor-guide/introduction.html?lang=zh-Hans)。
