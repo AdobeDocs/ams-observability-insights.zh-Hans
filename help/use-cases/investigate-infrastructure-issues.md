@@ -4,13 +4,20 @@ description: 使用主机级基础架构仪表板确定事件是与CPU、内存�
 feature: Operations
 role: Admin
 redirect_url: /help/infrastructure-monitoring.md
-source-git-commit: 71582797a4779bb890c4f2cc3da880cc76a3c5ca
+product_v2:
+  - id: fd1f54a9-f50c-467d-8956-cebbaf4f3eb8
+    internal-label: Experience Manager
+feature_v2:
+  - id: 8a70d214-ab7b-58c1-b001-2ed2e5d6303d
+    internal-label: Operations
+role_v2:
+  - id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
+    internal-label: Admin
+source-git-commit: e0cc17c9d725cad021ba99da4332bca176eae6db
 workflow-type: tm+mt
 source-wordcount: '27'
 ht-degree: 0%
-
 ---
-
 
 # 调查基础架构问题
 

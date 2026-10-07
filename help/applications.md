@@ -3,13 +3,20 @@ title: 应用程序
 description: 应用程序提供应用程序性能监控(APM)功能，提供应用程序运行状况、性能、事务和支持每个服务的底层基础架构的统一视图。
 feature: Operations
 role: Admin
-source-git-commit: efddec659ebb1cdd22537d60ccca175680dfdab4
+product_v2:
+  - id: fd1f54a9-f50c-467d-8956-cebbaf4f3eb8
+    internal-label: Experience Manager
+feature_v2:
+  - id: 8a70d214-ab7b-58c1-b001-2ed2e5d6303d
+    internal-label: Operations
+role_v2:
+  - id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
+    internal-label: Admin
+source-git-commit: e0cc17c9d725cad021ba99da4332bca176eae6db
 workflow-type: tm+mt
 source-wordcount: '546'
 ht-degree: 0%
-
 ---
-
 
 # 应用程序
 
