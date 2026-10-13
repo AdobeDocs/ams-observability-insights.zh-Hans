@@ -1,9 +1,12 @@
 ---
-source-git-commit: 4949fcad799260aa73354a8c0b9d79e6394cb257
+title: 数据词典
+description: 引用可用于Observability Insights SQL查询的实体和属性。
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '585'
+source-wordcount: '598'
 ht-degree: 20%
 ---
+
 ## 数据词典 {#data-dictionary}
 
 这是您可以查询的每个实体和属性。 实时目录（含说明）也在“浏览”的&#x200B;**查询指南**&#x200B;面板和“添加构件”对话框中。
@@ -109,7 +112,8 @@ ht-degree: 20%
 | `JvmCpuRecentUtilization` | JVM进程CPU | % |         | 1分钟汇总 |
 | `DispatcherRequestRate` | AEM Dispatcher HTTP请求 | 需要 | ✔ |                                              |
 
-&#x200B;> [!NOTE]
+>[!NOTE]
+>
 > 每个内存池&#x200B;**报告JVM内存量度**，因此`JvmHeapUsed` / `JvmHeapLimit`上的`average(value)`跨池平均值。 使用`FACET host, pool`可获取准确的每个池视图。
 
 ### `SpanBreakdown`：预聚合的交易构成

@@ -1,9 +1,12 @@
 ---
-source-git-commit: ec98f6bd132cadaba1da7c4fb727d7e031790645
+title: 性能
+description: 改进可观察性分析中的查询、图表和功能板性能。
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '217'
-ht-degree: 2%
+source-wordcount: '227'
+ht-degree: 3%
 ---
+
 ## 性能 {#performance}
 
 每个查询以15秒的超时和字节读取预算运行。 本文档介绍了可观察性分析如何自动加快查询，以及如何设计在任何时间范围内保持快速状态的仪表板。

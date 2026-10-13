@@ -1,9 +1,12 @@
 ---
-source-git-commit: 263ba9e9b3eb1c6e4dd253ca03bd0ce8954c588b
+title: 教程4：高级函数
+description: 了解如何使用高级SQL函数来分析Observability Insights遥测。
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '491'
+source-wordcount: '507'
 ht-degree: 1%
 ---
+
 ## 教程4：高级函数 {#tutorial-4-advanced-functions}
 
 本教程涵盖了支持更深入调查的功能和实体：可变性、增长、“最坏示例”查找、占总数的份额、事务构成和任意OpenTelemetry指标。
@@ -64,7 +67,8 @@ SELECT sum(callCount) AS calls, average(avgDurationMs) AS avgMs FROM SpanBreakdo
 SELECT average(avgDurationMs) AS avgMs FROM SpanBreakdown FACET segment TIMESERIES AUTO LIMIT 8
 ```
 
-&#x200B;> [!NOTE]
+>[!NOTE]
+>
 > `avgDurationMs`未使用设备自动标记。 将小组件&#x200B;**单元**&#x200B;设置为`ms`。
 
 ### 发现和查询任何量度
@@ -91,7 +95,8 @@ SELECT latest(value) AS bytesUsed FROM MetricSum WHERE metric = 'jvm.memory.used
 SELECT count(*) FILTER (WHERE http.route != '') AS withRoute, count(*) FILTER (WHERE db.system != '') AS dbCalls, count(*) FILTER (WHERE peer.service != '') AS withPeer, count(*) FILTER (WHERE error.type != '') AS withErrorType FROM Span FACET service LIMIT 50
 ```
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > 当存在已策划的实体时（例如`CpuUtilization`），首选它而不是`MetricGauge`。 它采用正确的滤波器和单位转换方法，可以加速滚动。
 
 ### 选择正确的跟踪实体

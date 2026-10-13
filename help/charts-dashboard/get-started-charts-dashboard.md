@@ -1,9 +1,12 @@
 ---
-source-git-commit: 05ed98c07602488843c52cd262af2d8cc204fef1
+title: 图表和仪表板入门
+description: 了解如何使用图表和仪表板可视化可观察性分析数据。
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '292'
-ht-degree: 3%
+source-wordcount: '309'
+ht-degree: 2%
 ---
+
 ## 图表和仪表板：可视化您的数据 {#charts-and-dashboards-visualizing-your-data}
 
 查询可查找您需要的信息。 图表和仪表板可让这些信息对您的组织有所帮助。 本文档说明如何将SQL结果变成图表，以及如何构建、组织和共享功能板。

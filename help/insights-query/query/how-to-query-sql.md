@@ -1,9 +1,12 @@
 ---
-source-git-commit: d3cd77e213674587152d6d33efa65328f420a547
+title: 如何使用SQL查询
+description: 了解如何在Observability Insights中编写和运行SQL查询。
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '538'
+source-wordcount: '554'
 ht-degree: 0%
 ---
+
 ## 如何使用SQL进行查询：查询的机制 {#how-to-query-with-sql-the-mechanics-of-querying}
 
 在使用任何工具之前，了解其工作原理会很有用。 本文档说明如何浏览数据，说明查询运行时发生的情况，并介绍从简单到复杂的示例查询。
@@ -12,7 +15,8 @@ ht-degree: 0%
 
 使用SQL的最佳方法是打开&#x200B;**浏览**，然后使用您自己的数据进行尝试。
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > SQL是只读的。 它无法更改或删除数据，并且每个查询的范围都属于您的租户。
 
 1. **在应用程序顶部的租户切换器中挑选客户**，SQL需要一个租户。
@@ -37,7 +41,8 @@ FROM Transaction SELECT count(*) FACET service
 
 这会计算每个服务的请求数，向您显示正在报告的服务。
 
-&#x200B;> [!IMPORTANT]
+>[!IMPORTANT]
+>
 > **生成前发现。** 属性可用性取决于每个服务的检测方式。 首先在新租户上运行[发现查询](#101-data-discovery)，以查看哪些服务、主机、属性和量度实际包含数据。
 
 ### 查询的运行方式
@@ -87,5 +92,6 @@ flowchart LR
 | **浏览** | 全局时间选取器。 当选取器范围处于活动状态时，将忽略`SINCE`/`UNTIL`。 |
 | **API没有显式范围** | 查询中的`SINCE`/`UNTIL`，默认使用上一个小时。 |
 
-&#x200B;> [!NOTE]
+>[!NOTE]
+>
 > 由于选取器会在功能板和Explore中取胜，因此本指南通常会将`SINCE`排除在功能板查询之外。 应始终为查询定义时间选取器。

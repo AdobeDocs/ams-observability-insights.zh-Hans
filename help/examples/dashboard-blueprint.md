@@ -1,9 +1,12 @@
 ---
-source-git-commit: 263ba9e9b3eb1c6e4dd253ca03bd0ce8954c588b
+title: 仪表板Blueprint
+description: 使用Blueprint构建可观察性分析功能板以进行应用程序和基础架构监控。
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '1311'
+source-wordcount: '1324'
 ht-degree: 1%
 ---
+
 ## 仪表板Blueprint {#dashboard-blueprints}
 
 每个Blueprint都是一个完整、复杂的功能板。 其中列出了目标、选项卡和节布局，以及每个小组件及其图表类型、单位、阈值、大小和查询。 在12列网格上，大小为`width×height`。 从上到下构建每个，然后拖动进行调整。
@@ -23,11 +26,11 @@ ht-degree: 1%
 
 **图表图例：** **N** =数字，**L** =折线，**A** =面积图，**B** =条形图，**P** =饼图，**T** =表格。
 
-&#x200B;---
+
 
 ### Golden Signals/SLO板
 
-**目标：**&#x200B;一个屏幕回答“平台当前是否正常？”  — 流量、错误、延迟、饱和度。
+**目标：**一个屏幕回答“平台当前是否正常？”  — 流量、错误、延迟、饱和度。
 **时间选取器：**&#x200B;最近1小时（事件）或24小时（每日审阅）。
 
 ```text
@@ -120,7 +123,7 @@ SELECT average(value) AS memory FROM MemoryUtilization FACET host TIMESERIES AUT
 SELECT average(value) AS load5m FROM LoadAverage5m FACET host TIMESERIES AUTO LIMIT 10
 ```
 
-&#x200B;---
+
 
 ### 错误分类展示板
 
@@ -207,7 +210,7 @@ SELECT count(*) AS failures, percentile(duration, 95) AS p95 FROM Span WHERE kin
 SELECT timestamp, service, host, name, urlPath, http.statusCode, duration, statusMessage, traceId FROM Transaction WHERE status = 'Error' LIMIT 200
 ```
 
-&#x200B;---
+
 
 ### 延迟深度讨论区
 
@@ -276,7 +279,7 @@ SELECT sum(callCount) AS calls, average(avgDurationMs) AS avgMs FROM SpanBreakdo
 SELECT count(*) AS calls, max(duration) AS slowestMs, latest(traceId, duration) AS slowestTraceId, latest(host, duration) AS slowestHost FROM Transaction FACET name ORDER BY slowestMs DESC LIMIT 50
 ```
 
-&#x200B;---
+
 
 ### 下游依赖关系板
 
@@ -357,11 +360,11 @@ SELECT count(*) FILTER (WHERE kind = 'Producer') AS produced, count(*) FILTER (W
 SELECT count(*) AS calls, percentile(duration, 95) AS p95, percentage(*, WHERE status = 'Error') AS errorPct FROM Span WHERE rpc.system != '' FACET service, rpc.system, rpc.method ORDER BY calls DESC LIMIT 50
 ```
 
-&#x200B;---
+
 
 ### AEM创作/发布/Dispatcher展示板
 
-**目标：**&#x200B;按层分组的AEM操作展示板，镜像经典New Relic AEM布局。
+**目标：**按层分组的AEM操作展示板，镜像经典New Relic AEM布局。
 使用名为`PUBLISH`、`AUTHOR`、`DISPATCHER`的&#x200B;**节标题**&#x200B;和带`- PUBLISH` / `- AUTHOR`的结尾小组件标题以获取颜色提示。
 
 ```text
@@ -514,11 +517,11 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, count(*) FILTER (WHER
 SELECT percentOfTotal(duration) AS timeShare FROM Span WHERE sling.servlet != '' FACET sling.servlet LIMIT 20
 ```
 
-&#x200B;---
+
 
 ### 基础架构容量展示板
 
-**目标：**&#x200B;跨主机进行容量规划和饱和度搜索。
+**目标：**跨主机进行容量规划和饱和度搜索。
 **时间选择器：** 7天用于趋势（汇总可以快速完成），1小时用于事件。
 
 ```text
@@ -661,7 +664,7 @@ SELECT rate(value) AS v FROM NetworkTransmitRate WHERE host = 'web-publish-01' T
 netRx + netTx
 ```
 
-&#x200B;---
+
 
 ### JVM运行状况展示板
 
@@ -733,7 +736,8 @@ SELECT average(value) AS v FROM JvmHeapLimit TIMESERIES AUTO
 (used / limit) * 100
 ```
 
-&#x200B;> [!NOTE]
+>[!NOTE]
+>
 > 若要将公式限定在一台主机中，请将`WHERE host = 'my-publish-01'`添加到&#x200B;**两个**&#x200B;查询。
 
 **W6 ·主机使用的栈** — L， `MB`， 6×4
@@ -766,7 +770,7 @@ SELECT average(value) AS jvmCpu FROM JvmCpuRecentUtilization FACET host TIMESERI
 SELECT latest(value) AS bytesUsed, max(value) AS peakBytes FROM MetricSum WHERE metric = 'jvm.memory.used' FACET host, pool ORDER BY peakBytes DESC LIMIT 100
 ```
 
-&#x200B;---
+
 
 ### 11.8执行/NOC墙板
 
@@ -849,7 +853,7 @@ SELECT count(*) AS requests FROM Transaction WHERE hostTierPrefix != '' FACET ho
 
 **W10 · SLO注释** — 文本小组件，12×1。
 
-&#x200B;---
+
 
 ### 比例和预留空间展示板（公式展示）
 
@@ -995,13 +999,14 @@ SELECT count(*) AS v FROM Transaction TIMESERIES AUTO
 (errors / total) / 0.001
 ```
 
-&#x200B;---
+
 
 ### 服务浏览器（变量驱动）
 
 **目标：**&#x200B;任何团队都可以指向&#x200B;_其_&#x200B;服务和环境的一个讨论区。
 
-&#x200B;> [!WARNING]
+>[!WARNING]
+>
 > 请参阅[教程3步骤8.7](#87-make-dashboards-reusable-with-variables)中的&#x200B;**当前生成限制**：尚未预览或保存构件SQL中的`{{variables}}`。 在解决此问题之前，请使用文字（例如`'checkout'`）替换每个`{{…}}`，并使用&#x200B;_复制_&#x200B;为每个服务克隆展示板。 当支持端到端替代时，以下设计已准备就绪。
 
 **变量**

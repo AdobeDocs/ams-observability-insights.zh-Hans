@@ -1,16 +1,20 @@
 ---
-source-git-commit: 263ba9e9b3eb1c6e4dd253ca03bd0ce8954c588b
+title: 查询指南
+description: 使用SQL查询方法在Observability Insights中调查应用程序和基础结构遥测。
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '565'
+source-wordcount: '580'
 ht-degree: 0%
 ---
+
 ## 查询指南 {#query-cookbook}
 
 指南是一个现成查询库，按主题分组。 每个查询前面都有一个最适合它的图表类型，以&#x200B;**bold**&#x200B;表示。 时间子句被省略，因为时间选择器控制窗口。
 
 **在此文档中：** [10.1数据发现](#101-data-discovery) · [10.2吞吐量](#102-throughput) · [10.3延迟](#103-latency) · [10.4错误](#104-errors) · [10.5 Apdex](#105-apdex--user-experience) · [10.6服务和主机](#106-services-hosts--instances) · [10.7依赖项](#107-downstream-dependencies) · [10.8 AEM](#108-aem-adobe-experience-manager) · [10.9错误基础架构](#109-infrastructure) · [10.10 JVM](#1010-jvm--runtime)
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > 将示例值（如`'checkout'`或`'web-publish-01'`）替换为您租户中的实际值。 下面的数据发现查询列出了它们。
 
 ### 数据发现
@@ -385,7 +389,8 @@ SELECT average(value) AS cpu FROM CpuUtilization FACET host TIMESERIES AUTO
 SELECT average(value) AS userPct FROM CpuUserPercent TIMESERIES AUTO
 ```
 
-&#x200B;> [!NOTE]
+>[!NOTE]
+>
 > SQL为每个查询读取一个实体，因此user/system/iowait/steke需要四个并排小组件（请参阅[blueprint 11.6](#116-infrastructure-capacity-board) W7-W10）。 公式会将它们折叠为一个数字，而不是四个系列。
 
 **栏** — 按主机列出的CPU p95：

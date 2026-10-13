@@ -1,9 +1,12 @@
 ---
-source-git-commit: ec98f6bd132cadaba1da7c4fb727d7e031790645
+title: 附录
+description: 有关可观察性见解SQL查询和仪表板的参考补充信息。
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '134'
+source-wordcount: '145'
 ht-degree: 5%
 ---
+
 ## 附录 {#appendix}
 
 **在此文档中：** [14.1限制](#141-limits) · [14.2导出文件格式](#142-export-file-format) · [14.3一页备忘单](#143-one-page-cheat-sheet)

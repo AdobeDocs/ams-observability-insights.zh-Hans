@@ -1,9 +1,12 @@
 ---
-source-git-commit: ec98f6bd132cadaba1da7c4fb727d7e031790645
+title: 疑难解答
+description: 在可观察性分析中，对SQL查询、图表和功能板进行故障诊断。
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '327'
+source-wordcount: '337'
 ht-degree: 5%
 ---
+
 ## 疑难解答 {#troubleshooting}
 
 当您&#x200B;**验证**&#x200B;或&#x200B;**运行查询**&#x200B;时，编辑器下将显示错误消息，在仪表板上的小组件本身也会显示错误消息。 在第一列中查找消息。

@@ -1,9 +1,12 @@
 ---
-source-git-commit: d3cd77e213674587152d6d33efa65328f420a547
+title: SQL入门
+description: 了解如何使用SQL查询Observability Insights遥测。
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '671'
+source-wordcount: '684'
 ht-degree: 1%
 ---
+
 # 开始使用
 
 **Adobe可观察性分析查询语言(SQL)** — 在Adobe可观察性分析中查询、图表和仪表板。
@@ -13,7 +16,8 @@ ht-degree: 1%
 | **应用于** | **探索**&#x200B;和&#x200B;**仪表板**→分析UI （自定义仪表板） |
 | **受众** | 知道SQL的工程师、SRE和高级用户 |
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > 标记为`sql`的每个代码块都是SQL查询，您可以将其直接粘贴到&#x200B;**→浏览SQL**&#x200B;或&#x200B;**仪表板→添加SQL**→构件。
 
 ## SQL入门：遥测语言 {#get-started-with-sql-the-language-of-your-telemetry}
@@ -38,7 +42,8 @@ SELECT count(*) AS requests FROM Transaction TIMESERIES AUTO
 
 SQL同时支持&#x200B;**事件查询**&#x200B;和&#x200B;**聚合查询**，前者返回单个请求行，后者返回总计、百分比、比率、划分和时间序列。
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > **仪表板→创建仪表板**&#x200B;中的模板完全由SQL生成。 打开带有铅笔图标的任意模板构件，以查看其查询并从中学习。
 
 ### 您可以查询的内容
@@ -52,7 +57,8 @@ SQL可以查询四个系列的数据。 完整列表位于[数据字典](#data-d
 | **通用量度** | `MetricGauge`, `MetricSum` | 按名称、度量发现分类的任何OpenTelemetry度量 |
 | **预聚合跨度组合** | `SpanBreakdown` | 构成事务处理的子工序 |
 
-&#x200B;> [!NOTE]
+>[!NOTE]
+>
 > 日志、警报定义和清单关系不可用。
 
 ### 使用SQL的位置
