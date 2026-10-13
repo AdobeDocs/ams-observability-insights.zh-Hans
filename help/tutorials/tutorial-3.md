@@ -38,7 +38,7 @@ SELECT rate(value) AS rxBytesPerSec FROM NetworkReceiveRate FACET host TIMESERIE
 SELECT rate(value) AS writeBytesPerSec FROM DiskWriteRate FACET host, device TIMESERIES AUTO LIMIT 10
 ```
 
-> [!WARNING]
+&#x200B;> [!WARNING]
 > 始终按`host`（磁盘按`device`）分面`rate()`，或筛选到一台主机。 如果没有这些信息，来自不同主机的读数会混合在一起，结果就毫无意义。
 
 要从跟踪中获取&#x200B;**请求**&#x200B;比率，请改为对固定存储桶中的请求计数。 这将提供每分钟的请求：
@@ -146,7 +146,7 @@ SELECT sum(duration) AS v FROM Transaction
 | 每个量度一个 | 每个查询只返回一个聚合，不返回`FACET` |
 | 缺少数据 | 缺少值或除以零会产生空点，从不`Infinity`或`NaN` |
 
-> [!TIP]
+&#x200B;> [!TIP]
 > 在时间序列公式的每次查询中使用`TIMESERIES AUTO`。 由于查询共享一个窗口，因此它们始终解析为相同的存储段大小。
 
 ### 使功能板可通过变量重复使用
@@ -187,8 +187,8 @@ SELECT count(*) FROM Transaction FACET service LIMIT 200
 
 当租户或时间选择器发生更改时，选项会刷新，并且它们按字母顺序排序。 当当前选择不再有效时，将自动选择第一个值（单选）或所有值（多选）。 变量的查询不能引用其他变量。
 
-> [!WARNING]
-> **当前生成限制。** 仪表板网格中发生了替换，但&#x200B;**添加构件**&#x200B;预览和&#x200B;**服务器端保存检查**&#x200B;接收原始`{{name}}`令牌并使用&#x200B;_意外字符“{&#39;_”拒绝它。 实践中：
+&#x200B;> [!WARNING]
+> **当前生成限制。** 仪表板网格中发生了替换，但&#x200B;**添加构件**&#x200B;预览和&#x200B;**服务器端保存检查**&#x200B;接收原始`{{name}}`令牌并使用&#x200B;_意外字符“&lbrace;&#39;_”拒绝它。 实践中：
 >
 > - **小组件标题**&#x200B;和&#x200B;**文本小组件**&#x200B;中的`{{variables}}`逐个工作。
 > - 在&#x200B;**导入**&#x200B;之后，**小组件SQL**&#x200B;中的`{{variables}}`正确呈现，但存在此类小组件的仪表板无法&#x200B;**保存**。

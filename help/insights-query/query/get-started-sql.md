@@ -13,7 +13,7 @@ ht-degree: 1%
 | **应用于** | **探索**&#x200B;和&#x200B;**仪表板**→分析UI （自定义仪表板） |
 | **受众** | 知道SQL的工程师、SRE和高级用户 |
 
-> [!TIP]
+&#x200B;> [!TIP]
 > 标记为`sql`的每个代码块都是SQL查询，您可以将其直接粘贴到&#x200B;**→浏览SQL**&#x200B;或&#x200B;**仪表板→添加SQL**→构件。
 
 ## SQL入门：遥测语言 {#get-started-with-sql-the-language-of-your-telemetry}
@@ -38,7 +38,7 @@ SELECT count(*) AS requests FROM Transaction TIMESERIES AUTO
 
 SQL同时支持&#x200B;**事件查询**&#x200B;和&#x200B;**聚合查询**，前者返回单个请求行，后者返回总计、百分比、比率、划分和时间序列。
 
-> [!TIP]
+&#x200B;> [!TIP]
 > **仪表板→创建仪表板**&#x200B;中的模板完全由SQL生成。 打开带有铅笔图标的任意模板构件，以查看其查询并从中学习。
 
 ### 您可以查询的内容
@@ -52,7 +52,7 @@ SQL可以查询四个系列的数据。 完整列表位于[数据字典](#data-d
 | **通用量度** | `MetricGauge`, `MetricSum` | 按名称、度量发现分类的任何OpenTelemetry度量 |
 | **预聚合跨度组合** | `SpanBreakdown` | 构成事务处理的子工序 |
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > 日志、警报定义和清单关系不可用。
 
 ### 使用SQL的位置

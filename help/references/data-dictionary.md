@@ -109,7 +109,7 @@ ht-degree: 20%
 | `JvmCpuRecentUtilization` | JVM进程CPU | % |         | 1分钟汇总 |
 | `DispatcherRequestRate` | AEM Dispatcher HTTP请求 | 需要 | ✔ |                                              |
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > 每个内存池&#x200B;**报告JVM内存量度**，因此`JvmHeapUsed` / `JvmHeapLimit`上的`average(value)`跨池平均值。 使用`FACET host, pool`可获取准确的每个池视图。
 
 ### `SpanBreakdown`：预聚合的交易构成

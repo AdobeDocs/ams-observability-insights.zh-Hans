@@ -66,7 +66,7 @@ SELECT percentage(*, WHERE duration > 2000) AS slowPct FROM Transaction FACET se
 SELECT percentile(duration, 50) AS p50, percentile(duration, 95) AS p95, percentile(duration, 99) AS p99 FROM Transaction TIMESERIES AUTO
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > `Transaction.duration`的p50、p95和p99通过长窗口从汇总中提供，因此每周查看时它们保持较快。
 
 ### 使用标签使结果可读
@@ -77,7 +77,7 @@ SELECT percentile(duration, 50) AS p50, percentile(duration, 95) AS p95, percent
 SELECT count(*) AS 'Requests', percentile(duration, 95) AS 'p95 (ms)' FROM Transaction FACET service
 ```
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > 别名仅适用于`SELECT`项。 Facet列始终使用属性名称进行标记。
 
 ### 匹配模式和列表
@@ -100,7 +100,7 @@ SELECT count(*) AS requests FROM Transaction WHERE urlPath NOT LIKE '%.js' AND u
 SELECT count(*) AS requests FROM Transaction WHERE http.method IN ('POST', 'PUT', 'DELETE') FACET service
 ```
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > sql没有正则表达式(`RLIKE`)。 将`LIKE`模式与`OR`合并，或使用`IN`。
 
 ### 使用`ORDER BY`排序和排名
@@ -117,7 +117,7 @@ SELECT count(*) AS requests, percentile(duration, 95) AS p95 FROM Transaction FA
 SELECT count(*) AS requests FROM Transaction FACET service ORDER BY requests ASC LIMIT 10
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > 没有`HAVING`。 要仅查找“忙”操作，请按照`requests`排名，并保留前N位，或者添加可消除噪音的`WHERE`（例如`WHERE http.method != 'OPTIONS'`）。
 
 ### 按多个属性分组

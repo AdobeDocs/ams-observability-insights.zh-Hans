@@ -28,7 +28,7 @@ FROM   <Entity>
 <unit>        := second | seconds | minute | minutes | hour | hours | day | days | week | weeks
 ```
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > 上述`--`注释仅为文档。 SQL本身不接受注释。
 
 ### 必需条款
@@ -154,7 +154,7 @@ SELECT count(*) AS total, count(*) FILTER (WHERE status = 'Error') AS errors, pe
 SELECT count(*) FROM Transaction FACET urlPath LIMIT 50
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > 始终在查询驱动变量和高基数Facet (`urlPath`， `traceId`， `jcr.path`， `url`)上设置`LIMIT`。
 
 </details>
@@ -194,7 +194,7 @@ SELECT count(*) FROM Transaction SINCE 6 hours ago
 - 时间范围不能超过&#x200B;**31天**（_时间范围不能超过31天_）。
 - 不支持绝对日期(`SINCE '2026-01-01'`)和`TODAY` / `YESTERDAY`。
 
-> [!IMPORTANT]
+&#x200B;> [!IMPORTANT]
 > 在功能板和浏览器中，**时间选取器覆盖** `SINCE`和`UNTIL`。 请参阅[时间窗口优先级](#time-window-precedence)。
 
 </details>
@@ -224,7 +224,7 @@ SELECT percentile(duration, 95) AS p95 FROM Transaction TIMESERIES AUTO
 SELECT count(*) FROM Transaction TIMESERIES 1 hour SINCE 1 day ago
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > 偏好仪表板上的`AUTO`。 不管时间选择器怎么说，它都能保持大约120点。 它还避免了“碎片”的每主机行，因为主机量度大约每90秒刮取一次。
 
 </details>
@@ -434,7 +434,7 @@ SELECT rate(value) AS bytesPerSec FROM NetworkReceiveRate FACET host TIMESERIES 
 - 仅适用于计数器实体（在[数据字典](#53-curated-metric-entities)中标记为✔）。
 - 需要`TIMESERIES`，并且必须是&#x200B;**仅限**&#x200B;聚合。 不允许`FILTER`。
 
-> [!WARNING]
+&#x200B;> [!WARNING]
 > 始终为`FACET host`，或筛选到单个主机。 许多主机上未分面的`rate()`将比较不同主机的计数器，并生成无意义的数字。 磁盘计数器是按设备计算的，因此`FACET host, device`是最精确的。
 
 </details>
@@ -508,14 +508,14 @@ SELECT uniqueCount(host) AS hosts, uniqueCount(traceId) AS traces FROM Transacti
 SELECT count(*) FROM Transaction WHERE (status = 'Error' OR duration > 2000) AND NOT host LIKE '%dispatcher%' AND http.method IN ('GET', 'POST')
 ```
 
-> [!WARNING]
+&#x200B;> [!WARNING]
 > `attr = NULL`是一个错误。 使用`attr IS NULL`。
 
 ### 类型处理：空白与NULL
 
 目录中的每个属性都有一个类型： `string`、`number`、`boolean`或`timestamp`。 SQL类型检查函数（例如，`average(service)`被拒绝）。 不需要或没有类型转换函数。
 
-> [!IMPORTANT]
+&#x200B;> [!IMPORTANT]
 > **Blank与NULL。** 大多数字符串属性来自OpenTelemetry属性映射，其中&#x200B;_missing_&#x200B;键读取为空字符串`''`，而不是`NULL`。 要仅保留带有属性的范围，请使用&#x200B;**`attr != ''`**&#x200B;而不是`IS NOT NULL`。 数值属性（如`http.statusCode`）不存在时实际上是`NULL`，因此`IS NOT NULL`适用于它们。
 
 ```sql

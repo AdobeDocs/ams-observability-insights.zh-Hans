@@ -64,7 +64,7 @@ SELECT sum(callCount) AS calls, average(avgDurationMs) AS avgMs FROM SpanBreakdo
 SELECT average(avgDurationMs) AS avgMs FROM SpanBreakdown FACET segment TIMESERIES AUTO LIMIT 8
 ```
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > `avgDurationMs`未使用设备自动标记。 将小组件&#x200B;**单元**&#x200B;设置为`ms`。
 
 ### 发现和查询任何量度
@@ -91,7 +91,7 @@ SELECT latest(value) AS bytesUsed FROM MetricSum WHERE metric = 'jvm.memory.used
 SELECT count(*) FILTER (WHERE http.route != '') AS withRoute, count(*) FILTER (WHERE db.system != '') AS dbCalls, count(*) FILTER (WHERE peer.service != '') AS withPeer, count(*) FILTER (WHERE error.type != '') AS withErrorType FROM Span FACET service LIMIT 50
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > 当存在已策划的实体时（例如`CpuUtilization`），首选它而不是`MetricGauge`。 它采用正确的滤波器和单位转换方法，可以加速滚动。
 
 ### 选择正确的跟踪实体

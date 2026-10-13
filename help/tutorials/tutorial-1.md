@@ -32,7 +32,7 @@ SELECT timestamp, service, name, duration FROM Transaction LIMIT 10
 
 行按第一列降序排序，因此，将`timestamp`放在第一会为您提供最新的请求。
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > SQL没有`SELECT *`。 将属性列入列表可保持结果的小型性和可读性。 [数据字典](#data-dictionary)和编辑器中的自动完成功能显示了可用的内容。
 
 ### 汇总数据
@@ -65,7 +65,7 @@ SELECT uniqueCount(host) FROM Transaction
 SELECT count(*) AS requests, average(duration) AS avgMs, max(duration) AS maxMs FROM Transaction
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > 别名成为列标题和图例标签，它们就是您在`ORDER BY`中引用的内容。 养成命名每个聚合的习惯。
 
 ### 设置时间窗口
@@ -84,7 +84,7 @@ SELECT count(*) AS requests FROM Transaction SINCE 2 days ago UNTIL 1 day ago
 
 单位可以是`second`、`minute`、`hour`、`day`或`week`。 窗口最长31天。
 
-> [!IMPORTANT]
+&#x200B;> [!IMPORTANT]
 > 在&#x200B;**浏览**&#x200B;和&#x200B;**仪表板**&#x200B;中，页面顶部的&#x200B;**时间选取器**&#x200B;控制窗口并覆盖`SINCE`/`UNTIL`。 若要查看其他句点，请更改选取器。 因此，本指南的其余部分将`SINCE`保留在仪表板查询之外。
 
 ### 使用`TIMESERIES`绘制趋势
@@ -121,7 +121,7 @@ SELECT count(*) AS slowOrFailed FROM Transaction WHERE service = 'checkout' AND 
 SELECT count(*) AS contentRequests FROM Transaction WHERE urlPath LIKE '/content/%'
 ```
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > 字符串值区分大小写，并使用单引号： `'Error'`，而不是`"Error"`或`'error'`。 将`checkout`替换为租户提供的服务。 下一步说明如何列出这些变量。
 
 ### 具有`FACET`的组
