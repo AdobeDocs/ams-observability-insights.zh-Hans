@@ -12,9 +12,9 @@ feature_v2:
 role_v2:
   - id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
     internal-label: Admin
-source-git-commit: e0cc17c9d725cad021ba99da4332bca176eae6db
+source-git-commit: d8c86bf4873a9eef6ce9bbcca5a545aa4e862e5f
 workflow-type: tm+mt
-source-wordcount: '533'
+source-wordcount: '518'
 ht-degree: 0%
 ---
 
@@ -65,6 +65,6 @@ Adobe使用Observability Insights APM Java插件监控您的AEM创作层和发�
 
 **开始使用** — 此分区。 涵盖访问、帐户配置、监控范围和数据保留。
 
-**[使用可观察性洞察](../use-observability-insights.md)** — 面向任务的日常调查指导。 当症状面向应用程序时，请使用[应用程序](../applications.md)：页面速度慢、错误尖峰或不稳定的事务。 当您需要确定主机级资源压力（CPU、内存、磁盘或网络）是否说明了您在应用程序中看到的内容时，请使用[主机](../hosts.md)。 在[调查应用程序问题](../use-cases/investigate-application-issues.md)和[调查基础结构问题](../use-cases/investigate-infrastructure-issues.md)中提供了分步调查流程。
+**[使用可观察性洞察](../use-observability-insights.md)** — 面向任务的日常调查指导。 当症状面向应用程序时，请使用[应用程序](../applications.md)：页面速度慢、错误尖峰或不稳定的事务。 当您需要确定主机级资源压力（CPU、内存、磁盘或网络）是否说明了您在应用程序中看到的内容时，请使用[主机](../hosts.md)。
 
 **[常见问题](../troubleshooting/common-questions.md)** — 在活动事件期间不确定从何处开始或需要快速回答的常见问题和面向支持的入口点。
