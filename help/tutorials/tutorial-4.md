@@ -1,17 +1,15 @@
 ---
 title: 教程4：高级函数
 description: 了解如何使用高级SQL函数来分析Observability Insights遥测。
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
 workflow-type: tm+mt
-source-wordcount: '507'
+source-wordcount: '483'
 ht-degree: 1%
 ---
 
 ## 教程4：高级函数 {#tutorial-4-advanced-functions}
 
 本教程涵盖了支持更深入调查的功能和实体：可变性、增长、“最坏示例”查找、占总数的份额、事务构成和任意OpenTelemetry指标。
-
-**在本教程中：** [9.1 stddev](#91-measure-consistency-with-stddev) · [9.2派生](#92-spot-growth-with-derivative) · [9.3排名最新](#93-find-the-worst-example-with-ranked-latest) · [9.4 percentOfTotal](#94-find-where-time-goes-with-percentoftotal) · [9.5 SpanBreakdown](#95-break-down-transactions-with-spanbreakdown) · [9.6任何量度](#96-discover-and-query-any-metric) · [9.7选择实体](#97-choose-the-right-trace-entity) · [9.8嵌套聚合](#98-work-around-nested-aggregation)
 
 ### 度量值与`stddev`的一致性
 
@@ -124,9 +122,9 @@ SELECT count(*) AS calls, percentage(*, WHERE status = 'Error') AS errorPct, per
 NRQL允许您通过子查询聚合聚合，例如“每主机最大值的平均值”。 SQL不会。 下面是备选方案：
 
 | 目标 | SQL方法 |
-| --------------------------------------- | ---------------------------------------------------------- |
+| --------------------------------------- | -------------------------------------------------------------------- |
 | 每个组的值，然后对组进行排序 | `FACET group` + `ORDER BY alias` + `LIMIT` |
-| 两个聚合的比率 | [公式小组件](#86-combine-queries-with-formula-widgets) |
+| 两个聚合的比率 | [公式小组件](tutorial-3.md#combine-queries-with-formula-widgets) |
 | 每个主机的值，然后是“最差主机” | `FACET host ORDER BY alias DESC LIMIT 1` |
 | 一段时间内每台主机的平均值 | `FACET host TIMESERIES AUTO`，并阅读系列 |
 

@@ -1,9 +1,9 @@
 ---
 title: 创建功能板
 description: 了解如何创建、配置、保存和共享Observability Insights仪表板。
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 2e851e1a3d9f8fbdb220ecd0d37fba0f6b0188df
 workflow-type: tm+mt
-source-wordcount: '1129'
+source-wordcount: '1134'
 ht-degree: 2%
 ---
 
@@ -39,9 +39,9 @@ ht-degree: 2%
 | **网格** | 12列。 拖动小部件通过手柄，从角调整大小（最小为2×2）。 |
 | **小组件标头** （悬停时） | 下载CSV、下载PNG、编辑、复制、删除、拖动手柄 |
 
->[!IMPORTANT]
+> **重要**
 >
-> **保存是显式的。** 在单击&#x200B;**保存**&#x200B;之前，布局更改、新小组件、选项卡和变量将保留在浏览器中。 按钮显示&#x200B;_正在保存……→已保存_，或&#x200B;_保存失败_（请参阅[疑难解答](#troubleshooting)）。
+> **保存是显式的。** 在单击&#x200B;**保存**&#x200B;之前，布局更改、新小组件、选项卡和变量将保留在浏览器中。 按钮显示&#x200B;_正在保存……→已保存_，或&#x200B;_保存失败_（请参阅[疑难解答](../operate/troubleshooting.md)）。
 
 ### 步骤4：添加构件
 
@@ -64,7 +64,7 @@ ht-degree: 2%
 3. 使用&#x200B;**查询指南**&#x200B;面板浏览实体、属性和示例。
 4. 单击&#x200B;**运行查询**。 您将看到&#x200B;_`<Entity>`查询有效_、实时预览和摘要(`N rows · N time points · N groups`)。 少于三个时间点时出现&#x200B;_稀疏序列_&#x200B;警告。
 
->[!TIP]
+> **提示**
 >
 > 生成器包含最常见的查询。 为`apdex`、`percentage`、`rate`、`FILTER`、多个聚合、`OR`、`IN`、多个Facet或`ORDER BY`切换到SQL。
 
@@ -101,7 +101,7 @@ ht-degree: 2%
 - **注意**：纯文本（最多4,000个字符，保留空白行）。 将其用于Runbook链接、所有者和SLO定义。 `{{variables}}`已呈现。
 - **节标题**：勾选&#x200B;_使其成为节标题_。 它横跨整个宽度，其V形标记折叠其下方的每个小组件，直到下一节标题。 将其用于&#x200B;**PUBLISH**、**AUTHOR**&#x200B;和&#x200B;**DISPATCHER**&#x200B;等分组。
 
->[!TIP]
+> **提示**
 >
 > 以`- PUBLISH`或`- AUTHOR`结尾的小组件标题将获得细微的颜色提示，这可让AEM功能板更易于按层扫描。
 
@@ -116,15 +116,15 @@ ht-degree: 2%
 
 ## 变量
 
-变量允许一个仪表板同时为多个上下文提供服务，例如一个服务、环境或阈值。 [教程3](#87-make-dashboards-reusable-with-variables)对这些主题进行了深入介绍。
+变量允许一个仪表板同时为多个上下文提供服务，例如一个服务、环境或阈值。 [教程3](../tutorials/tutorial-3.md#make-dashboards-reusable-with-variables)对这些主题进行了深入介绍。
 
->[!WARNING]
+> **警告**
 >
 > **当前内部版本中的已知限制：** `{{variables}}`在小组件&#x200B;**标题**&#x200B;和&#x200B;**文本小组件**&#x200B;中工作。 在小部件&#x200B;**SQL**&#x200B;内部，它们在仪表板中呈现，但&#x200B;**添加小部件**&#x200B;预览和服务器端&#x200B;**保存**&#x200B;检查拒绝具有`Unexpected character '{'`的原始`{{name}}`令牌。 在解决此问题之前，请在构件查询中使用文本值，并使用&#x200B;**复制**&#x200B;来生成变体。
 
 ## 公式小组件
 
-公式以算术方式组合了2-6个命名SQL查询，例如`(errors / total) * 100`。 当KPI需要多个查询（例如比率、净空空间、比率总和或燃速）时，请使用其中一个查询。 请参阅[教程3](#86-combine-queries-with-formula-widgets)。
+公式以算术方式组合了2-6个命名SQL查询，例如`(errors / total) * 100`。 当KPI需要多个查询（例如比率、净空空间、比率总和或燃速）时，请使用其中一个查询。 请参阅[教程3](../tutorials/tutorial-3.md#combine-queries-with-formula-widgets)。
 
 ## 共享、导出和导入
 
@@ -135,9 +135,9 @@ ht-degree: 2%
 | **导入** | 将JSON导出&#x200B;**加载到打开的仪表板**，并替换其选项卡和变量。 然后单击&#x200B;**保存**。 提示：首先创建一个空仪表板，然后导入其中。 |
 | **CSV / PNG** | 从构件标题下载每个构件。 |
 
->[!TIP]
+> **提示**
 >
-> 通过导出和导入，您可以在Git中控制功能板的版本，并将功能板从一个客户提升到另一个客户。 [附录](#142-export-file-format)中介绍了文件格式。
+> 通过导出和导入，您可以在Git中控制功能板的版本，并将功能板从一个客户提升到另一个客户。 [附录](../operate/appendix.md)中介绍了文件格式。
 
 ## 仪表板和图表性能提示
 
@@ -146,4 +146,4 @@ ht-degree: 2%
 - **始终`LIMIT`多面查询**，尤其是高基数属性，如`urlPath`、`traceId`和`jcr.path`。
 - **对低基数属性(`service`、`kind`、`status`)进行早期筛选**。
 - **与固定小存储桶相比，更喜欢`TIMESERIES AUTO`**，并避免使用`TIMESERIES MAX`，除非超过几分钟。
-- **为汇总设计长期趋势。** 查看[性能](#performance)。
+- **为汇总设计长期趋势。** 查看[性能](../operate/performance.md)。

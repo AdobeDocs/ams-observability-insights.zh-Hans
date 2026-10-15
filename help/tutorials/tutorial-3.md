@@ -1,17 +1,15 @@
 ---
 title: 教程3：推进您的功能板
 description: 在Observability Insights中使用变量、公式和多个构件构建仪表板。
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
 workflow-type: tm+mt
-source-wordcount: '902'
+source-wordcount: '879'
 ht-degree: 3%
 ---
 
 ## 教程3：推进您的功能板 {#tutorial-3-advance-your-dashboarding}
 
 在本教程中，您将构建生产级别仪表板的组件：用户体验分数、计数器比率、案例分组、直方图、包含阈值的KPI图块、节、公式小部件和变量。
-
-**在本教程中：** [8.1 apdex](#81-score-user-experience-with-apdex) · [8.2比率](#82-turn-counters-into-rates-with-rate) · [8.3个案例](#83-group-values-into-cases-with-filter) · [8.4直方图](#84-build-a-latency-histogram) · [8.5 KPI图块和节](#85-build-kpi-tiles-and-sections) · [8.6公式](#86-combine-queries-with-formula-widgets) · [8.7变量](#87-make-dashboards-reusable-with-variables) · [8.8将其放在一起](#88-put-it-together)
 
 ### 用`apdex`对用户体验评分
 
@@ -29,7 +27,7 @@ SELECT apdex(duration, 500) AS apdex FROM Transaction FACET service TIMESERIES A
 
 将其放入阈值为`0 → Red`、`0.7 → Amber`、`0.85 → Green`的&#x200B;**数字**&#x200B;小部件中。 最高匹配组获胜，因此低分保持红色。
 
-### 8.2使用`rate`将计数器转换为费率
+### 使用`rate`将计数器转换为速率
 
 [数据字典](#53-curated-metric-entities)中的计数器实体(✔)存储的总数不断增加。 `rate(value)`将它们转换为每秒的值。 它需要`TIMESERIES`，并且必须是唯一的聚合：
 
@@ -41,7 +39,7 @@ SELECT rate(value) AS rxBytesPerSec FROM NetworkReceiveRate FACET host TIMESERIE
 SELECT rate(value) AS writeBytesPerSec FROM DiskWriteRate FACET host, device TIMESERIES AUTO LIMIT 10
 ```
 
->[!WARNING]
+> **警告**
 >
 > 始终按`host`（磁盘按`device`）分面`rate()`，或筛选到一台主机。 如果没有这些信息，来自不同主机的读数会混合在一起，结果就毫无意义。
 
@@ -192,7 +190,7 @@ SELECT count(*) FROM Transaction FACET service LIMIT 200
 
 当租户或时间选择器发生更改时，选项会刷新，并且它们按字母顺序排序。 当当前选择不再有效时，将自动选择第一个值（单选）或所有值（多选）。 变量的查询不能引用其他变量。
 
->[!WARNING]
+> **警告**
 >
 > **当前生成限制。** 在仪表板网格中进行替换，但&#x200B;**添加构件**&#x200B;预览和&#x200B;**服务器端保存检查**&#x200B;接收原始`{{name}}`令牌并使用`Unexpected character '{'`将其拒绝。 实践中：
 >
@@ -203,4 +201,4 @@ SELECT count(*) FROM Transaction FACET service LIMIT 200
 
 ### 放在一起
 
-您现在已在[仪表板Blueprint](#dashboard-blueprints)中使用了每个构建基块：包含阈值、部分、百分点、Apdex、比率、大小写列、直方图、公式和变量的KPI图块。 蓝图显示了如何将它们组合到完整的黄金信号、错误分类、AEM、基础架构和JVM仪表板中。
+您现在已在[仪表板Blueprint](../examples/dashboard-blueprint.md)中使用了每个构建基块：包含阈值、部分、百分点、Apdex、比率、大小写列、直方图、公式和变量的KPI图块。 蓝图显示了如何将它们组合到完整的黄金信号、错误分类、AEM、基础架构和JVM仪表板中。
