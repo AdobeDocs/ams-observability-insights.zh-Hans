@@ -1,9 +1,9 @@
 ---
 title: 如何使用SQL查询
 description: 了解如何在Observability Insights中编写和运行SQL查询。
-source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
+source-git-commit: 898e474e3ab7914f8de2df286c67ac046d3b22b0
 workflow-type: tm+mt
-source-wordcount: '557'
+source-wordcount: '555'
 ht-degree: 0%
 ---
 
@@ -15,7 +15,7 @@ ht-degree: 0%
 
 使用SQL的最佳方法是打开&#x200B;**浏览**，然后使用您自己的数据进行尝试。
 
-> **提示**
+>[!TIP]
 >
 > SQL是只读的。 它无法更改或删除数据，并且每个查询的范围都属于您的租户。
 
@@ -92,6 +92,6 @@ flowchart LR
 | **浏览** | 全局时间选取器。 当选取器范围处于活动状态时，将忽略`SINCE`/`UNTIL`。 |
 | **API没有显式范围** | 查询中的`SINCE`/`UNTIL`，默认使用上一个小时。 |
 
-> **注释**
+>[!NOTE]
 >
 > 由于选取器会在功能板和Explore中取胜，因此本指南通常会将`SINCE`排除在功能板查询之外。 应始终为查询定义时间选取器。

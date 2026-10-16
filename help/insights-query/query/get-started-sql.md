@@ -1,9 +1,9 @@
 ---
 title: SQL入门
 description: 了解如何使用SQL查询Observability Insights遥测。
-source-git-commit: 148bf6480461a0109b221b8e7c2f9ab2035a7d68
+source-git-commit: 09c8edf64e744ff0c16acd0d5905fc6796490f82
 workflow-type: tm+mt
-source-wordcount: '687'
+source-wordcount: '684'
 ht-degree: 1%
 ---
 
@@ -16,7 +16,7 @@ ht-degree: 1%
 | **应用于** | **探索**&#x200B;和&#x200B;**仪表板**→分析UI （自定义仪表板） |
 | **受众** | 知道SQL的工程师、SRE和高级用户 |
 
-> **提示**
+>[!TIP]
 >
 > 标记为`sql`的每个代码块都是SQL查询，您可以将其直接粘贴到&#x200B;**→浏览SQL**&#x200B;或&#x200B;**仪表板→添加SQL**→构件。
 
@@ -42,7 +42,7 @@ SELECT count(*) AS requests FROM Transaction TIMESERIES AUTO
 
 SQL同时支持&#x200B;**事件查询**&#x200B;和&#x200B;**聚合查询**，前者返回单个请求行，后者返回总计、百分比、比率、划分和时间序列。
 
-> **提示**
+>[!TIP]
 >
 > **仪表板→创建仪表板**&#x200B;中的模板完全由SQL生成。 打开带有铅笔图标的任意模板构件，以查看其查询并从中学习。
 
@@ -57,7 +57,7 @@ SQL可以查询四个系列的数据。 完整列表位于[数据字典](/help/r
 | **通用量度** | `MetricGauge`, `MetricSum` | 按名称、度量发现分类的任何OpenTelemetry度量 |
 | **预聚合跨度组合** | `SpanBreakdown` | 构成事务处理的子工序 |
 
-> **注释**
+>[!NOTE]
 >
 > 日志、警报定义和清单关系不可用。
 

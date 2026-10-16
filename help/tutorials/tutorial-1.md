@@ -1,9 +1,9 @@
 ---
 title: 教程1：您的第一个查询
 description: 针对可观察性分析遥测编写您的第一个SQL查询。
-source-git-commit: 52cc24792c47727700428be58b5bbb2a5c7223d2
+source-git-commit: 09c8edf64e744ff0c16acd0d5905fc6796490f82
 workflow-type: tm+mt
-source-wordcount: '552'
+source-wordcount: '549'
 ht-degree: 0%
 ---
 
@@ -33,7 +33,7 @@ SELECT timestamp, service, name, duration FROM Transaction LIMIT 10
 
 行按第一列降序排序，因此，将`timestamp`放在第一会为您提供最新的请求。
 
-> **注释**
+>[!NOTE]
 >
 > SQL没有`SELECT *`。 将属性列入列表可保持结果的小型性和可读性。 [数据字典](#data-dictionary)和编辑器中的自动完成功能显示了可用的内容。
 
@@ -67,7 +67,7 @@ SELECT uniqueCount(host) FROM Transaction
 SELECT count(*) AS requests, average(duration) AS avgMs, max(duration) AS maxMs FROM Transaction
 ```
 
-> **提示**
+>[!TIP]
 >
 > 别名成为列标题和图例标签，它们就是您在`ORDER BY`中引用的内容。 养成命名每个聚合的习惯。
 
@@ -125,7 +125,7 @@ SELECT count(*) AS slowOrFailed FROM Transaction WHERE service = 'checkout' AND 
 SELECT count(*) AS contentRequests FROM Transaction WHERE urlPath LIKE '/content/%'
 ```
 
-> **注释**
+>[!NOTE]
 >
 > 字符串值区分大小写，并使用单引号： `'Error'`，而不是`"Error"`或`'error'`。 将`checkout`替换为租户提供的服务。 下一步说明如何列出这些变量。
 
