@@ -1,9 +1,9 @@
 ---
 title: 仪表板Blueprint
 description: 使用Blueprint构建可观察性分析功能板以进行应用程序和基础架构监控。
-source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
+source-git-commit: 94e108d029b04bf4f04aec3fb8b949705c4005e1
 workflow-type: tm+mt
-source-wordcount: '1324'
+source-wordcount: '1196'
 ht-degree: 1%
 ---
 
@@ -11,26 +11,13 @@ ht-degree: 1%
 
 每个Blueprint都是一个完整、复杂的功能板。 其中列出了目标、选项卡和节布局，以及每个小组件及其图表类型、单位、阈值、大小和查询。 在12列网格上，大小为`width×height`。 从上到下构建每个，然后拖动进行调整。
 
-| Blueprint | 受众 | 高亮 |
-| ------------------------------------------------------------------------------------ | --------------------- | ---------------------------------------------------------------------------------- |
-| [11.1 Golden Signals / SLO](#111-golden-signals--slo-board) | SRE，待命 | KPI图块，带有阈值、Apdex、错误%、饱和度 |
-| [11.2错误分类](#112-error-triage-board) | 待命 | 错误类、 5xx热点、带有跟踪ID的失败请求 |
-| [11.3延迟深入分析](#113-latency-deep-dive-board) | 性能工程师 | 百分点、延迟存储段、可变性、交易组成、最慢跟踪 |
-| [11.4下游依赖项](#114-downstream-dependencies-board) | 服务所有者 | 出站HTTP、DB、消息传送、RPC |
-| [11.5 AEM创作/发布/ Dispatcher](#115-aem-author--publish--dispatcher-board) | AEM团队 | 每层的区段、Sling/JSP/JCR、Dispatcher加载 |
-| [11.6基础架构容量](#116-infrastructure-capacity-board) | 平台/容量 | CPU模式，内存，磁盘，网络速率，公式 |
-| [11.7 JVM运行状况](#117-jvm-health-board) | Java团队 | 栈%公式，每个主机和池的栈，线程， JVM CPU |
-| [11.8主管/NOC墙](#118-executive--noc-wall-board) | NOC，领导力 | KPI图块、可用性公式、按层流量、SLO说明 |
-| [11.9比例和余量](#119-ratios--headroom-board-formula-showcase) | 每个人 | 公式小组件展示 |
-| [11.10服务资源管理器](#1110-service-explorer-variable-driven) | 每个团队 | 变量驱动、可重用 |
-
 **图表图例：** **N** =数字，**L** =折线，**A** =面积图，**B** =条形图，**P** =饼图，**T** =表格。
 
 
 
 ### Golden Signals/SLO板
 
-**目标：**&#x200B;一个屏幕回答“平台当前是否正常？”  — 流量、错误、延迟、饱和度。
+**目标：**一个屏幕回答“平台当前是否正常？”  — 流量、错误、延迟、饱和度。
 **时间选取器：**&#x200B;最近1小时（事件）或24小时（每日审阅）。
 
 ```text
@@ -364,7 +351,7 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, percentage(*, WHERE s
 
 ### AEM创作/发布/Dispatcher展示板
 
-**目标：**&#x200B;按层分组的AEM操作展示板，镜像经典New Relic AEM布局。
+**目标：**按层分组的AEM操作展示板，镜像经典New Relic AEM布局。
 使用名为`PUBLISH`、`AUTHOR`、`DISPATCHER`的&#x200B;**节标题**&#x200B;和带`- PUBLISH` / `- AUTHOR`的结尾小组件标题以获取颜色提示。
 
 ```text
@@ -521,7 +508,7 @@ SELECT percentOfTotal(duration) AS timeShare FROM Span WHERE sling.servlet != ''
 
 ### 基础架构容量展示板
 
-**目标：**&#x200B;跨主机进行容量规划和饱和度搜索。
+**目标：**跨主机进行容量规划和饱和度搜索。
 **时间选择器：** 7天用于趋势（汇总可以快速完成），1小时用于事件。
 
 ```text
