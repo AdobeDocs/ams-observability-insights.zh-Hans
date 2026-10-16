@@ -1,9 +1,9 @@
 ---
 title: 疑难解答
 description: 在可观察性分析中，对SQL查询、图表和功能板进行故障诊断。
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: c45d62d2af62e6bd0c88e210b31c8954b75533be
 workflow-type: tm+mt
-source-wordcount: '337'
+source-wordcount: '335'
 ht-degree: 5%
 ---
 
@@ -26,7 +26,7 @@ ht-degree: 5%
 | `ORDER BY 'x' must reference a selected value or alias` | 按未选择的内容排序 | 按别名对聚合和顺序进行别名。 |
 | `IN requires between 1 and 100 values` | — | 拆分或使用`LIKE`。 |
 | `Use IS NULL or IS NOT NULL for null comparisons` | `attr = NULL` | 使用`IS NULL`。 |
-| `Unexpected character '{'` | 在“添加构件”预览中或“保存”时`{{variable}}` | 请参阅[Tutorial 3，步骤8.7](#87-make-dashboards-reusable-with-variables)限制。 |
+| `Unexpected character '{'` | 在“添加构件”预览中或“保存”时`{{variable}}` | 请参阅[教程3](../tutorials/tutorial-3.md#make-dashboards-reusable-with-variables)限制。 |
 | `Unexpected character ';'` / `'"'` | 分号或双引号 | 删除`;`；使用单引号。 |
 | `Expected a positive duration such as 30 minutes` | `TIMESERIES 5m` | 写入`TIMESERIES 5 minutes`。 |
 | `Time range cannot exceed 31 days` | 选取器> 31天 | 缩小窗口。 |
@@ -36,7 +36,7 @@ ht-degree: 5%
 | `Unknown query name 'x' - must be one of: …` | 公式引用缺少的名称 | 完全匹配名称（区分大小写）。 |
 | **保存失败** | 构件查询在服务器端无效（通常为`{{var}}`） | 打开每个最近编辑的小组件并&#x200B;**运行**&#x200B;它；修复或删除无效的小组件。 |
 | _选择{{x}}_&#x200B;的值 | 变量无选择项 | 在变量栏中选取一个值。 |
-| _过去……无活动_ | 窗口中没有行 | 扩大窗口；使用发现查询（[数据发现](#101-data-discovery)）验证筛选器。 |
+| _过去……无活动_ | 窗口中没有行 | 扩大窗口；使用发现查询（[数据发现](../examples/query-cookbook.md#data-discovery)）验证筛选器。 |
 | 线条破碎为点 | 存储段小于数据节奏 | 使用`TIMESERIES AUTO` （≥2分钟）或条形图。 |
 | Facet显示空字符串组 | 某些行上缺少属性 | 添加`WHERE attr != ''`。 |
 | _此旧版SQL面板不再运行_ | 旧原始SQL生成器中的面板 | 在SQL中编辑→重建。 |
