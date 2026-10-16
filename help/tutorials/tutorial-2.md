@@ -1,9 +1,9 @@
 ---
 title: 教程2：控制您的数据
 description: 了解如何在Observability Insights中筛选、分组和控制查询结果。
-source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
+source-git-commit: 09c8edf64e744ff0c16acd0d5905fc6796490f82
 workflow-type: tm+mt
-source-wordcount: '337'
+source-wordcount: '336'
 ht-degree: 0%
 ---
 
@@ -67,7 +67,7 @@ SELECT percentage(*, WHERE duration > 2000) AS slowPct FROM Transaction FACET se
 SELECT percentile(duration, 50) AS p50, percentile(duration, 95) AS p95, percentile(duration, 99) AS p99 FROM Transaction TIMESERIES AUTO
 ```
 
-> **提示**
+>[!TIP]
 >
 > `Transaction.duration`的p50、p95和p99通过长窗口从汇总中提供，因此每周查看时它们保持较快。
 

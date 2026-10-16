@@ -1,28 +1,15 @@
 ---
 title: 仪表板Blueprint
 description: 使用Blueprint构建可观察性分析功能板以进行应用程序和基础架构监控。
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 94e108d029b04bf4f04aec3fb8b949705c4005e1
 workflow-type: tm+mt
-source-wordcount: '1324'
+source-wordcount: '1196'
 ht-degree: 1%
 ---
 
 ## 仪表板Blueprint {#dashboard-blueprints}
 
 每个Blueprint都是一个完整、复杂的功能板。 其中列出了目标、选项卡和节布局，以及每个小组件及其图表类型、单位、阈值、大小和查询。 在12列网格上，大小为`width×height`。 从上到下构建每个，然后拖动进行调整。
-
-| Blueprint | 受众 | 高亮 |
-| ------------------------------------------------------------------------------------ | --------------------- | ---------------------------------------------------------------------------------- |
-| [11.1 Golden Signals / SLO](#111-golden-signals--slo-board) | SRE，待命 | KPI图块，带有阈值、Apdex、错误%、饱和度 |
-| [11.2错误分类](#112-error-triage-board) | 待命 | 错误类、 5xx热点、带有跟踪ID的失败请求 |
-| [11.3延迟深入分析](#113-latency-deep-dive-board) | 性能工程师 | 百分点、延迟存储段、可变性、交易组成、最慢跟踪 |
-| [11.4下游依赖项](#114-downstream-dependencies-board) | 服务所有者 | 出站HTTP、DB、消息传送、RPC |
-| [11.5 AEM创作/发布/ Dispatcher](#115-aem-author--publish--dispatcher-board) | AEM团队 | 每层的区段、Sling/JSP/JCR、Dispatcher加载 |
-| [11.6基础架构容量](#116-infrastructure-capacity-board) | 平台/容量 | CPU模式，内存，磁盘，网络速率，公式 |
-| [11.7 JVM运行状况](#117-jvm-health-board) | Java团队 | 栈%公式，每个主机和池的栈，线程， JVM CPU |
-| [11.8主管/NOC墙](#118-executive--noc-wall-board) | NOC，领导力 | KPI图块、可用性公式、按层流量、SLO说明 |
-| [11.9比例和余量](#119-ratios--headroom-board-formula-showcase) | 每个人 | 公式小组件展示 |
-| [11.10服务资源管理器](#1110-service-explorer-variable-driven) | 每个团队 | 变量驱动、可重用 |
 
 **图表图例：** **N** =数字，**L** =折线，**A** =面积图，**B** =条形图，**P** =饼图，**T** =表格。
 
@@ -644,7 +631,7 @@ SELECT rate(value) AS rxBytesPerSec FROM NetworkReceiveRate FACET host TIMESERIE
 SELECT rate(value) AS txBytesPerSec FROM NetworkTransmitRate FACET host TIMESERIES AUTO
 ```
 
-**W20 ·一台主机的网络I/O总数（公式）** — 公式小组件，L， `bytes/s`，12×4。 公式不能`FACET`，且`rate()`的范围必须限制到一台主机（请参阅[策划的量度实体](#53-curated-metric-entities)），因此请固定该主机 — 将`web-publish-01`替换为W5中的实际主机名。
+**W20 ·一台主机的网络I/O总数（公式）** — 公式小组件，L， `bytes/s`，12×4。 公式不能`FACET`，且`rate()`的范围必须限制到一台主机（请参阅[策划的量度实体](../references/data-dictionary.md#curated-metric-entities)），因此请固定该主机 — 将`web-publish-01`替换为W5中的实际主机名。
 
 查询`netRx`：
 
@@ -939,7 +926,7 @@ SELECT average(value) AS v FROM JvmHeapUsed TIMESERIES AUTO
 limit - used
 ```
 
-**W5 ·一台主机的网络出/入比率** — 公式，L （固定主机；请参阅[策划的度量实体](#53-curated-metric-entities)）
+**W5 ·一台主机的网络出/入比率** — 公式，L （固定主机；请参阅[策划的度量实体](../references/data-dictionary.md#curated-metric-entities)）
 
 查询`rx`：
 

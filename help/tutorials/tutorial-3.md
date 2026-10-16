@@ -1,9 +1,9 @@
 ---
 title: 教程3：推进您的功能板
 description: 在Observability Insights中使用变量、公式和多个构件构建仪表板。
-source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
+source-git-commit: 09c8edf64e744ff0c16acd0d5905fc6796490f82
 workflow-type: tm+mt
-source-wordcount: '879'
+source-wordcount: '878'
 ht-degree: 3%
 ---
 
@@ -39,7 +39,7 @@ SELECT rate(value) AS rxBytesPerSec FROM NetworkReceiveRate FACET host TIMESERIE
 SELECT rate(value) AS writeBytesPerSec FROM DiskWriteRate FACET host, device TIMESERIES AUTO LIMIT 10
 ```
 
-> **警告**
+>[!WARNING]
 >
 > 始终按`host`（磁盘按`device`）分面`rate()`，或筛选到一台主机。 如果没有这些信息，来自不同主机的读数会混合在一起，结果就毫无意义。
 

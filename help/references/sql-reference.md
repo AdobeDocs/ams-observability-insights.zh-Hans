@@ -1,9 +1,9 @@
 ---
 title: SQL引用
 description: 引用可观察性分析支持的SQL语法、子句和函数。
-source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
+source-git-commit: 898e474e3ab7914f8de2df286c67ac046d3b22b0
 workflow-type: tm+mt
-source-wordcount: '1505'
+source-wordcount: '1504'
 ht-degree: 11%
 ---
 
@@ -29,7 +29,7 @@ FROM   <Entity>
 <unit>        := second | seconds | minute | minutes | hour | hours | day | days | week | weeks
 ```
 
-> **注释**
+>[!NOTE]
 >
 > 上述`--`注释仅为文档。 SQL本身不接受注释。
 

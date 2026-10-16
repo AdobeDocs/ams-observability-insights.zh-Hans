@@ -12,9 +12,9 @@ feature_v2:
 role_v2:
   - id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
     internal-label: Admin
-source-git-commit: e0cc17c9d725cad021ba99da4332bca176eae6db
+source-git-commit: ba4f816187e77f3f7b708942b3f14535417c2fdc
 workflow-type: tm+mt
-source-wordcount: '186'
+source-wordcount: '253'
 ht-degree: 0%
 ---
 
@@ -37,3 +37,11 @@ ht-degree: 0%
 ## Observability Insights实际收集哪些数据？ {#what-data-is-collected}
 
 请参阅[覆盖范围、环境和数据保留](../get-started/coverage-and-data.md)，以了解监视范围、应用程序呈现、保留期和操作影响。
+
+## 我为何可以使用其他浏览器登录，却无法使用Google Chrome？
+
+要允许用于可观察性分析的第三方Cookie并尝试再次登录，请执行以下操作：
+
+1. 要访问Cookie设置，请在Google Chrome中打开`chrome://settings/cookies`。
+2. 要允许Observability Insights的Cookie，请在&#x200B;**允许使用第三方Cookie**&#x200B;的站点下选择&#x200B;**添加**&#x200B;并输入`https://insights.adobecqms.net`。
+3. 要检查问题是否已解决，请在无痕窗口中登录到Observability Insights 。

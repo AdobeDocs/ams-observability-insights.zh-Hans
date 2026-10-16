@@ -1,7 +1,7 @@
 ---
 title: 功能板和查询文档
 description: 有关可观察性见解SQL查询和仪表板的参考文档。
-source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
+source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
 workflow-type: tm+mt
 source-wordcount: '10254'
 ht-degree: 4%
@@ -2957,7 +2957,7 @@ SELECT rate(value) AS rxBytesPerSec FROM NetworkReceiveRate FACET host TIMESERIE
 SELECT rate(value) AS txBytesPerSec FROM NetworkTransmitRate FACET host TIMESERIES AUTO
 ```
 
-**W20 ·一台主机的网络I/O总数（公式）** — 公式小组件，L， `bytes/s`，12×4。 公式不能`FACET`，且`rate()`的范围必须限制到一台主机（请参阅[策划的量度实体](#53-curated-metric-entities)），因此请固定该主机 — 将`web-publish-01`替换为W5中的实际主机名。
+**W20 ·一台主机的网络I/O总数（公式）** — 公式小组件，L， `bytes/s`，12×4。 公式不能`FACET`，且`rate()`的范围必须限制到一台主机（请参阅[策划的量度实体](data-dictionary.md#curated-metric-entities)），因此请固定该主机 — 将`web-publish-01`替换为W5中的实际主机名。
 
 查询`netRx`：
 
@@ -3245,7 +3245,7 @@ SELECT average(value) AS v FROM JvmHeapUsed TIMESERIES AUTO
 limit - used
 ```
 
-**W5 ·一台主机的网络出/入比率** — 公式，L （固定主机；请参阅[策划的度量实体](#53-curated-metric-entities)）
+**W5 ·一台主机的网络出/入比率** — 公式，L （固定主机；请参阅[策划的度量实体](data-dictionary.md#curated-metric-entities)）
 
 查询`rx`：
 
@@ -3430,7 +3430,7 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, count(*) FILTER (WHER
 | `FACET and TIMESERIES require an aggregate query` | 带有FACET/TIMESERIES的事件查询 | 使用聚合。 |
 | `FACET supports at most five attributes` | > 5个Facet | 减少。 |
 | `average requires a numeric attribute` | e.g. `average(service)` | 使用`uniqueCount`/`latest`或数字属性。 |
-| `rate requires TIMESERIES` / `rate is only available for counter measures` | `rate()`不含TIMESERIES或在仪表上 | 添加`TIMESERIES AUTO`；使用✔计数器实体（[策划的度量实体](#53-curated-metric-entities)）；对于仪表盘使用`derivative()`。 |
+| `rate requires TIMESERIES` / `rate is only available for counter measures` | `rate()`不含TIMESERIES或在仪表上 | 添加`TIMESERIES AUTO`；使用✔计数器实体（[策划的度量实体](data-dictionary.md#curated-metric-entities)）；对于仪表盘使用`derivative()`。 |
 | `rate cannot be combined with other aggregates` | 多个具有`rate()`的项目 | 每个小组件一个`rate()`；与公式组合。 |
 | `percentOfTotal cannot be combined with TIMESERIES` | — | 删除时间序列。 |
 | `apdex requires an entity with a status attribute` | 量度实体上的`apdex` | 使用`Transaction`/`Span`/`AppRequest`。 |
