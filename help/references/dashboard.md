@@ -40,7 +40,7 @@ ht-degree: 4%
 |                 | [13. 疑难解答](#13-troubleshooting) | 每个错误消息、其含义以及如何修复它 |
 |                 | [14. 附录](#14-appendix) | 限制、导出文件格式、单页备忘单 |
 
-# 开始使用
+&#x200B;# 开始使用
 
 ## &#x200B;1. SQL入门：遥测语言
 
@@ -505,7 +505,7 @@ SQL故意很小。 这保证了查询的安全性、快速性和租户隔离性�
 
 [↑回顶部](#top)
 
-# 引用
+&#x200B;# 引用
 
 ## &#x200B;4. SQL引用
 
@@ -1194,7 +1194,7 @@ SELECT count(*) AS jcrCalls FROM Span WHERE jcr.operation != '' FACET jcr.operat
 
 [↑回顶部](#top)
 
-# 教程
+&#x200B;# 教程
 
 ## &#x200B;6. 教程1：您的第一个查询
 
@@ -1828,7 +1828,7 @@ SELECT percentile(duration, 95) AS p95 FROM Transaction FACET host ORDER BY p95 
 
 [↑回顶部](#top)
 
-# 示例
+&#x200B;# 示例
 
 ## &#x200B;10. 查询指南
 
@@ -2353,7 +2353,7 @@ SELECT latest(value) AS bytesUsed FROM MetricSum WHERE metric = 'jvm.memory.used
 
 ### 11.1 Golden Signals/SLO板
 
-**目标：**一个屏幕回答“平台当前是否正常？”  — 流量、错误、延迟、饱和度。
+**目标：**&#x200B;一个屏幕回答“平台当前是否正常？”  — 流量、错误、延迟、饱和度。
 **时间选取器：**&#x200B;最近1小时（事件）或24小时（每日审阅）。
 
 ```text
@@ -2679,7 +2679,7 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, percentage(*, WHERE s
 
 ### 11.5 AEM创作/发布/Dispatcher展示板
 
-**目标：**按层分组的AEM操作展示板，镜像经典New Relic AEM布局。
+**目标：**&#x200B;按层分组的AEM操作展示板，镜像经典New Relic AEM布局。
 使用名为`PUBLISH`、`AUTHOR`、`DISPATCHER`的&#x200B;**节标题**&#x200B;和带`- PUBLISH` / `- AUTHOR`的结尾小组件标题以获取颜色提示。
 
 ```text
@@ -2834,7 +2834,7 @@ SELECT percentOfTotal(duration) AS timeShare FROM Span WHERE sling.servlet != ''
 
 ### 11.6基础架构容量板
 
-**目标：**跨主机进行容量规划和饱和度搜索。
+**目标：**&#x200B;跨主机进行容量规划和饱和度搜索。
 **时间选择器：** 7天用于趋势（汇总可以快速完成），1小时用于事件。
 
 ```text
@@ -3385,7 +3385,7 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, count(*) FILTER (WHER
 
 [↑回顶部](#top)
 
-# 操作
+&#x200B;# 操作
 
 ## &#x200B;12. 性能
 
