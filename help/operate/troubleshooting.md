@@ -1,7 +1,7 @@
 ---
 title: 疑难解答
 description: 在可观察性分析中，对SQL查询、图表和功能板进行故障诊断。
-source-git-commit: c45d62d2af62e6bd0c88e210b31c8954b75533be
+source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
 workflow-type: tm+mt
 source-wordcount: '335'
 ht-degree: 5%
@@ -19,7 +19,7 @@ ht-degree: 5%
 | `FACET and TIMESERIES require an aggregate query` | 带有FACET/TIMESERIES的事件查询 | 使用聚合。 |
 | `FACET supports at most five attributes` | > 5个Facet | 减少。 |
 | `average requires a numeric attribute` | e.g. `average(service)` | 使用`uniqueCount`/`latest`或数字属性。 |
-| `rate requires TIMESERIES` / `rate is only available for counter measures` | `rate()`不含TIMESERIES或在仪表上 | 添加`TIMESERIES AUTO`；使用✔计数器实体（[策划的度量实体](#53-curated-metric-entities)）；对于仪表盘使用`derivative()`。 |
+| `rate requires TIMESERIES` / `rate is only available for counter measures` | `rate()`不含TIMESERIES或在仪表上 | 添加`TIMESERIES AUTO`；使用✔计数器实体（[策划的度量实体](../references/data-dictionary.md#curated-metric-entities)）；对于仪表盘使用`derivative()`。 |
 | `rate cannot be combined with other aggregates` | 多个具有`rate()`的项目 | 每个小组件一个`rate()`；与公式组合。 |
 | `percentOfTotal cannot be combined with TIMESERIES` | — | 删除时间序列。 |
 | `apdex requires an entity with a status attribute` | 量度实体上的`apdex` | 使用`Transaction`/`Span`/`AppRequest`。 |

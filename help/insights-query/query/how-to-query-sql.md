@@ -1,7 +1,7 @@
 ---
 title: 如何使用SQL查询
 description: 了解如何在Observability Insights中编写和运行SQL查询。
-source-git-commit: 148bf6480461a0109b221b8e7c2f9ab2035a7d68
+source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
 workflow-type: tm+mt
 source-wordcount: '557'
 ht-degree: 0%
@@ -43,7 +43,7 @@ FROM Transaction SELECT count(*) FACET service
 
 > **重要**
 >
-> **生成前发现。** 属性可用性取决于每个服务的检测方式。 首先在新租户上运行[发现查询](#101-data-discovery)，以查看哪些服务、主机、属性和量度实际包含数据。
+> **生成前发现。** 属性可用性取决于每个服务的检测方式。 首先在新租户上运行[发现查询](../../examples/query-cookbook.md#data-discovery)，以查看哪些服务、主机、属性和量度实际包含数据。
 
 ### 查询的运行方式
 

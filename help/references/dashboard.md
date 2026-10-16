@@ -1,7 +1,7 @@
 ---
 title: 功能板和查询文档
 description: 有关可观察性见解SQL查询和仪表板的参考文档。
-source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
+source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
 workflow-type: tm+mt
 source-wordcount: '10254'
 ht-degree: 4%
@@ -40,7 +40,7 @@ ht-degree: 4%
 |                 | [13. 疑难解答](#13-troubleshooting) | 每个错误消息、其含义以及如何修复它 |
 |                 | [14. 附录](#14-appendix) | 限制、导出文件格式、单页备忘单 |
 
-&#x200B;# 开始使用
+# 开始使用
 
 ## &#x200B;1. SQL入门：遥测语言
 
@@ -505,7 +505,7 @@ SQL故意很小。 这保证了查询的安全性、快速性和租户隔离性�
 
 [↑回顶部](#top)
 
-&#x200B;# 引用
+# 引用
 
 ## &#x200B;4. SQL引用
 
@@ -1194,7 +1194,7 @@ SELECT count(*) AS jcrCalls FROM Span WHERE jcr.operation != '' FACET jcr.operat
 
 [↑回顶部](#top)
 
-&#x200B;# 教程
+# 教程
 
 ## &#x200B;6. 教程1：您的第一个查询
 
@@ -1828,7 +1828,7 @@ SELECT percentile(duration, 95) AS p95 FROM Transaction FACET host ORDER BY p95 
 
 [↑回顶部](#top)
 
-&#x200B;# 示例
+# 示例
 
 ## &#x200B;10. 查询指南
 
@@ -2353,7 +2353,7 @@ SELECT latest(value) AS bytesUsed FROM MetricSum WHERE metric = 'jvm.memory.used
 
 ### 11.1 Golden Signals/SLO板
 
-**目标：**&#x200B;一个屏幕回答“平台当前是否正常？”  — 流量、错误、延迟、饱和度。
+**目标：**一个屏幕回答“平台当前是否正常？”  — 流量、错误、延迟、饱和度。
 **时间选取器：**&#x200B;最近1小时（事件）或24小时（每日审阅）。
 
 ```text
@@ -2679,7 +2679,7 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, percentage(*, WHERE s
 
 ### 11.5 AEM创作/发布/Dispatcher展示板
 
-**目标：**&#x200B;按层分组的AEM操作展示板，镜像经典New Relic AEM布局。
+**目标：**按层分组的AEM操作展示板，镜像经典New Relic AEM布局。
 使用名为`PUBLISH`、`AUTHOR`、`DISPATCHER`的&#x200B;**节标题**&#x200B;和带`- PUBLISH` / `- AUTHOR`的结尾小组件标题以获取颜色提示。
 
 ```text
@@ -2834,7 +2834,7 @@ SELECT percentOfTotal(duration) AS timeShare FROM Span WHERE sling.servlet != ''
 
 ### 11.6基础架构容量板
 
-**目标：**&#x200B;跨主机进行容量规划和饱和度搜索。
+**目标：**跨主机进行容量规划和饱和度搜索。
 **时间选择器：** 7天用于趋势（汇总可以快速完成），1小时用于事件。
 
 ```text
@@ -2957,7 +2957,7 @@ SELECT rate(value) AS rxBytesPerSec FROM NetworkReceiveRate FACET host TIMESERIE
 SELECT rate(value) AS txBytesPerSec FROM NetworkTransmitRate FACET host TIMESERIES AUTO
 ```
 
-**W20 ·一台主机的网络I/O总数（公式）** — 公式小组件，L， `bytes/s`，12×4。 公式不能`FACET`，且`rate()`的范围必须限制到一台主机（请参阅[策划的量度实体](#53-curated-metric-entities)），因此请固定该主机 — 将`web-publish-01`替换为W5中的实际主机名。
+**W20 ·一台主机的网络I/O总数（公式）** — 公式小组件，L， `bytes/s`，12×4。 公式不能`FACET`，且`rate()`的范围必须限制到一台主机（请参阅[策划的量度实体](data-dictionary.md#curated-metric-entities)），因此请固定该主机 — 将`web-publish-01`替换为W5中的实际主机名。
 
 查询`netRx`：
 
@@ -3245,7 +3245,7 @@ SELECT average(value) AS v FROM JvmHeapUsed TIMESERIES AUTO
 limit - used
 ```
 
-**W5 ·一台主机的网络出/入比率** — 公式，L （固定主机；请参阅[策划的度量实体](#53-curated-metric-entities)）
+**W5 ·一台主机的网络出/入比率** — 公式，L （固定主机；请参阅[策划的度量实体](data-dictionary.md#curated-metric-entities)）
 
 查询`rx`：
 
@@ -3385,7 +3385,7 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, count(*) FILTER (WHER
 
 [↑回顶部](#top)
 
-&#x200B;# 操作
+# 操作
 
 ## &#x200B;12. 性能
 
@@ -3430,7 +3430,7 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, count(*) FILTER (WHER
 | `FACET and TIMESERIES require an aggregate query` | 带有FACET/TIMESERIES的事件查询 | 使用聚合。 |
 | `FACET supports at most five attributes` | > 5个Facet | 减少。 |
 | `average requires a numeric attribute` | e.g. `average(service)` | 使用`uniqueCount`/`latest`或数字属性。 |
-| `rate requires TIMESERIES` / `rate is only available for counter measures` | `rate()`不含TIMESERIES或在仪表上 | 添加`TIMESERIES AUTO`；使用✔计数器实体（[策划的度量实体](#53-curated-metric-entities)）；对于仪表盘使用`derivative()`。 |
+| `rate requires TIMESERIES` / `rate is only available for counter measures` | `rate()`不含TIMESERIES或在仪表上 | 添加`TIMESERIES AUTO`；使用✔计数器实体（[策划的度量实体](data-dictionary.md#curated-metric-entities)）；对于仪表盘使用`derivative()`。 |
 | `rate cannot be combined with other aggregates` | 多个具有`rate()`的项目 | 每个小组件一个`rate()`；与公式组合。 |
 | `percentOfTotal cannot be combined with TIMESERIES` | — | 删除时间序列。 |
 | `apdex requires an entity with a status attribute` | 量度实体上的`apdex` | 使用`Transaction`/`Span`/`AppRequest`。 |
